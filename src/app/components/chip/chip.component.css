@@ -1,0 +1,13 @@
+.chip {
+	margin: 10px;
+	font-family: Raleway;
+	font-size: 14px;
+	letter-spacing: 1.3px;
+	text-align: center;
+	text-transform: none;
+	color: rgba(0, 0, 0, 1);
+	padding: 5px 7px 5px 7px;
+	border-radius: 100px;
+	border: 0;
+	background-color: rgba(207, 216, 220, 1);
+}

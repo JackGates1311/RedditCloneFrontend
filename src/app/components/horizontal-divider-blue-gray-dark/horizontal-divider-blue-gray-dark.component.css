@@ -1,0 +1,5 @@
+.horizontal-divider-blue-gray-dark {
+	position: relative;
+	border: 1px dashed lightgray;
+	border-radius: 5px;
+}

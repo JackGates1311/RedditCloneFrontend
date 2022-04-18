@@ -1,0 +1,13 @@
+.input-stepper-white {
+	display: block;
+	margin: 10px;
+	font-size: 14px;
+	letter-spacing: 0px;
+	text-align: center;
+	text-transform: none;
+	color: rgba(0, 0, 0, 1);
+	padding: 16px 10px 16px 10px;
+	border-radius: 5px;
+	border: 0;
+	background-color: rgba(236, 239, 241, 1);
+}

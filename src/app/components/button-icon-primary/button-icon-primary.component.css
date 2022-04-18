@@ -1,0 +1,17 @@
+.button-icon-primary {
+	position: relative;
+	padding: 15px 15px 15px 15px;
+	border-radius: 100px;
+	box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.2);
+	border: 0;
+	background-color: rgba(0, 7, 238, 1);
+	color: rgba(255, 255, 255, 1);
+	font-size: 20px;
+	text-align: center;
+	margin: 10px;
+}
+
+.button-icon-primary-icon {
+	display: block;
+	font-size: 20px;
+}

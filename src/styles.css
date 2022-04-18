@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+html, body {
+	height: 100%;
+}
+
+app-root {
+	display: flex;
+	min-height: 100%;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+body,
+button,
+input,
+optgroup,
+select,
+textarea {
+	line-height: 1.5;
+}
+
+a {
+	display: contents;
+	text-decoration: none;
+}
+
+a > * {
+	cursor: pointer;
+}
