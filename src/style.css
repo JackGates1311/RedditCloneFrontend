@@ -350,12 +350,3 @@ table th, table td {
     background: darkgray;
     cursor: pointer;
 }
-
-#workoutViewGuest {
-
-    width: 96%;
-    height: auto;
-    overflow-x: scroll;
-    scroll-behavior: inherit;
-    padding-bottom: 50px;
-}
