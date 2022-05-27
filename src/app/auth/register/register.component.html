@@ -1,0 +1,143 @@
+<div class="container-fluid paddingNormal w-75">
+
+    <div class="paddingNormal">
+
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
+
+            <div class="row">
+
+                <div class="col-lg-6 com-md-6 col-sm-12 col-xs-12 mb-12">
+
+                    <label for="username">Username:</label>
+
+                    <input [ngClass]="[!registerForm.get('username').valid && registerForm.get('username').touched ?
+                        'form-control is-invalid':'form-control']" type="text" [formControlName]="'username'"
+                           name="username" id="username" placeholder="Username" required>
+
+                    <div *ngIf="!registerForm.get('username').valid && registerForm.get('username').touched"
+                         id="usernameFeedback" class="invalid-feedback">
+
+                        Please provide a valid username
+
+                    </div>
+
+                    <label for="userDisplayName">Display name:</label>
+
+                    <input [ngClass]="[!registerForm.get('userDisplayName').valid &&
+                        registerForm.get('userDisplayName').touched ? 'form-control is-invalid':'form-control']"
+                           type="text" [formControlName]="'userDisplayName'" name="userDisplayName"
+                           id="userDisplayName" placeholder="Display name">
+
+                    <div *ngIf="!registerForm.get('userDisplayName').valid && registerForm.get('userDisplayName').touched" id="userDisplayNameFeedback" class="invalid-feedback">
+
+                        Please provide a valid display name
+
+                    </div>
+
+                    <label for="userEmail">Email:</label>
+
+                    <input [ngClass]="[!registerForm.get('userEmail').valid &&
+                        registerForm.get('userEmail').touched ? 'form-control is-invalid':'form-control']"
+                           type="email" [formControlName]="'userEmail'" name="userEmail" id="userEmail"
+                           placeholder="Email">
+
+                    <div *ngIf="!registerForm.get('userEmail').valid && registerForm.get('userEmail').touched"
+                         id="userEmailFeedback" class="invalid-feedback">
+
+                        Please provide a valid email address
+
+                    </div>
+
+                    <label style="margin-top: 7px;" for="userAvatar">Avatar:</label>
+
+                    <div class="custom-file">
+
+                        <input type="file" class="custom-file-input" id="userAvatar"
+                               [formControlName]="'userAvatar'" name="userAvatar">
+
+                        <label class="custom-file-label" id="newWorkoutImageLabel" for="userAvatar">
+                            Select image for avatar
+                        </label>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-6 com-md-6 col-sm-12 col-xs-12 mb-12">
+
+                    <label for="userPassword">Password:</label>
+
+                    <input [ngClass]="[!registerForm.get('userPassword').valid &&
+                        registerForm.get('userPassword').touched ? 'form-control is-invalid':'form-control']"
+                           type="password" [formControlName]="'userPassword'" name="userPassword" id="userPassword"
+                           placeholder="Password">
+
+                    <div *ngIf="!registerForm.get('userPassword').valid &&
+                        registerForm.get('userPassword').touched" id="userPasswordFeedback"
+                         class="invalid-feedback">
+
+                        Please provide a valid password
+
+                    </div>
+
+                    <label for="userPasswordRepeated">Repeat password:</label>
+
+                    <input [ngClass]="[!(registerForm.get('userPasswordRepeated').value ===
+                        registerForm.get('userPassword').value) && registerForm.get('userPasswordRepeated').touched ?
+                        'form-control is-invalid':'form-control']" type="password"
+                           [formControlName]="'userPasswordRepeated'" name="userPasswordRepeated"
+                           id="userPasswordRepeated" placeholder="Repeat password">
+
+                    <div *ngIf="!(registerForm.get('userPasswordRepeated').value ===
+                        registerForm.get('userPassword').value) &&
+                        registerForm.get('userPasswordRepeated').touched"
+                         id="userPasswordRepeatedFeedback" class="invalid-feedback">
+
+                        Passwords are not matching
+
+                    </div>
+
+                    <label for="userDescription">Description:</label>
+
+                    <textarea [ngClass]="[!registerForm.get('userDescription').valid &&
+                        registerForm.get('userDescription').touched ? 'form-control is-invalid':'form-control']"
+                              [formControlName]="'userDescription'" id="userDescription" name="userDescription"
+                              rows="5"></textarea>
+
+                    <div *ngIf="!registerForm.get('userDescription').valid &&
+                    registerForm.get('userDescription').touched"
+                         id="userDescriptionFeedback" class="invalid-feedback">
+
+                        Please provide a valid description
+
+                    </div>
+
+
+                    <div class="form-row">
+
+                        <div class="form-group col-md-6">
+
+                            <input class="btn btn-light btn-sm marginTopDefault w-100" id="cancelAddEditAccount"
+                                   type="button" value="Cancel"/>
+
+                        </div>
+
+                        <div class="form-group col-md-6">
+
+                            <input class="btn btn-primary btn-sm marginTopDefault w-100" id="registerButton" type="submit"
+                                   [disabled]="registerForm.invalid || !(registerForm.get('userPasswordRepeated').value ===
+                        registerForm.get('userPassword').value)" value="Register Now">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

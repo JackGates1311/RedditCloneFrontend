@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { DemoScreenModule } from './pages/demo-screen/demo-screen.module';
 import { HeaderComponent } from './header/header.component';
 import { RegisterComponent } from './auth/register/register.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -19,6 +21,8 @@ import { RegisterComponent } from './auth/register/register.component';
 		BrowserModule,
 		AppRoutingModule,
 		DemoScreenModule,
+		ReactiveFormsModule,
+		HttpClientModule
 ],
 	providers: [],
 	bootstrap: [AppComponent],
