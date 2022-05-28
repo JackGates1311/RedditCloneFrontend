@@ -1,0 +1,123 @@
+<header>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light textAlignCenter">
+
+            <div class="container-fluid">
+
+            <a href="/" class="navbar-brand mr-3">
+                <img class="navBarLogoImageSize" id="logoImg" src="assets/images/Reddit-icon.png" alt="Reddit Clone">
+            </a>
+
+            <a class="navbar-brand">Reddit Clone</a>
+
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapseAdministrator">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div class="collapse navbar-collapse textAlignCenter" id="navbarCollapseAdministrator">
+
+                <div class="navbar-nav ml-auto">
+
+                    <a href="/manageUsers" class="nav-item nav-link d-none d-lg-block">
+
+                        <span class="material-icons">group</span>
+
+                    </a>
+
+                    <a href="/accountInfo" class="nav-item nav-link d-none d-lg-block">
+
+                            <span class="material-icons" data-toggle="tooltip" title="My account">
+                                account_circle</span>
+
+                    </a>
+
+
+                    <a href="/logout" class="nav-item nav-link d-none d-lg-block">
+
+                        <span class="material-icons" data-toggle="tooltip" title="Logout">logout</span>
+
+                    </a>
+
+
+
+                    <a routerLink="/register" class="nav-item nav-link d-none d-lg-block">
+
+                        <span class="material-icons" data-toggle="tooltip" title="Register">person_add_alt</span>
+
+                    </a>
+
+                    <a routerLink="/login" class="nav-item nav-link d-none d-lg-block">
+
+                        <span class="material-icons" data-toggle="tooltip" title="Login">login</span>
+
+                    </a>
+
+                    <!-- For mobile version of website -->
+
+                    <a href="/manageUsers" class="nav-item nav-link d-lg-none">
+
+                        <div class="inlineFlexNav">
+
+                            <span class="material-icons">group</span>
+                            Manage users
+
+                        </div>
+
+                    </a>
+
+                    <a href="/accountInfo" class="nav-item nav-link d-lg-none">
+
+                        <div class="inlineFlexNav">
+
+                            <span class="material-icons">account_circle</span>
+                            My account
+
+                        </div>
+
+                    </a>
+
+                    <a href="/logout" class="nav-item nav-link d-lg-none">
+
+                        <div class="inlineFlexNav">
+
+                            <span class="material-icons">logout</span>
+                            Logout
+
+                        </div>
+
+                    </a>
+
+                    <a routerLink="/register" class="nav-item nav-link d-lg-none">
+
+                        <div class="inlineFlexNav">
+
+                            <span class="material-icons">person_add_alt</span>
+                            Register
+
+                        </div>
+
+                    </a>
+
+                    <a routerLink="/login" class="nav-item nav-link d-lg-none">
+
+                        <div class="inlineFlexNav">
+
+                            <span class="material-icons">login</span>
+                            Login
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+</header>

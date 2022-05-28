@@ -9,6 +9,8 @@ import { HeaderComponent } from './header/header.component';
 import { RegisterComponent } from './auth/register/register.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { LoginComponent } from './auth/login/login.component';
+import {LocalStorage, NgxWebstorageModule} from "ngx-webstorage";
 
 
 @NgModule({
@@ -16,13 +18,15 @@ import {HttpClientModule} from "@angular/common/http";
 		AppComponent,
   HeaderComponent,
   RegisterComponent,
+  LoginComponent,
 ],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
 		DemoScreenModule,
 		ReactiveFormsModule,
-		HttpClientModule
+		HttpClientModule,
+		NgxWebstorageModule.forRoot()
 ],
 	providers: [],
 	bootstrap: [AppComponent],

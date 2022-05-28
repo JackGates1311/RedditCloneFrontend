@@ -1,0 +1,42 @@
+<div class="center paddingNormal w-40">
+
+    <div class="paddingNormal">
+
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+            <label for="username">Username:</label>
+
+            <input [ngClass]="[!loginForm.get('username').valid && loginForm.get('username').touched ?
+                   'form-control is-invalid':'form-control']" type="text" name="username" id="username"
+                   placeholder="Username" [formControlName]="'username'">
+
+            <div *ngIf="!loginForm.get('username').valid && loginForm.get('username').touched"
+                 id="usernameFeedback" class="invalid-feedback">
+
+                Please provide a valid username
+
+            </div>
+
+            <label for="password">Password:</label>
+
+            <input [ngClass]="[!loginForm.get('password').valid && loginForm.get('password').touched ?
+                   'form-control is-invalid':'form-control']" type="password" name="password" id="password"
+                   placeholder="Password" [formControlName]="'password'">
+
+            <div *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched"
+                 id="passwordFeedback" class="invalid-feedback">
+
+                Please provide a valid password
+
+            </div>
+
+            <input class="btn btn-primary btn-sm marginTopDefault" type="submit" value="Login"
+                   [disabled]="loginForm.invalid">
+
+        </form>
+
+        <a class="btn btn-light btn-sm marginTopDefault w-100" routerLink="/">Cancel</a>
+
+    </div>
+
+</div>
