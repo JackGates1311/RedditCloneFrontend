@@ -40,6 +40,8 @@ export class LoginComponent implements OnInit {
 
   login(): void {
 
+    //TODO for login functionality, use modal box instead (place current component inside modal box) of routing to new path and new controller ...
+
     this.loginRequestPayload.username = this.loginForm.get('username').value;
     this.loginRequestPayload.password = this.loginForm.get('password').value;
 

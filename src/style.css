@@ -350,3 +350,11 @@ table th, table td {
     background: darkgray;
     cursor: pointer;
 }
+.postContainer {
+
+    min-height: 10px;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+/* NEW */

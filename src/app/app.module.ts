@@ -11,6 +11,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { LoginComponent } from './auth/login/login.component';
 import {LocalStorage, NgxWebstorageModule} from "ngx-webstorage";
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import {LocalStorage, NgxWebstorageModule} from "ngx-webstorage";
   HeaderComponent,
   RegisterComponent,
   LoginComponent,
+  HomeComponent,
 ],
 	imports: [
 		BrowserModule,
