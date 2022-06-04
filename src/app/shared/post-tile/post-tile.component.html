@@ -1,0 +1,70 @@
+<div *ngFor="let post of posts">
+
+    <div class="card postContainer ">
+
+        <div class="card-header dirty-white">
+
+            <div class="inlineFlex w-100">
+
+                <div class="inlineFlex gapSmall postHeader pointerCursor w-60">
+
+                    <span class="material-icons">account_circle</span>
+                    <a id="communityName">{{post.communityName}}</a>
+
+                </div>
+
+                <div class="inlineFlex gapSmall pointerCursor w-40 alignRight">
+
+                    <div class="date-text">{{post.creationDate | date:'dd.MM.yyyy. HH:mm'}} </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-lg-12 com-md-12 col-sm-12 col-xs-12 mb-12">
+
+                    <a href="#">{{post.title}}</a>
+
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-12 com-md-12 col-sm-12 col-xs-12 mb-12">
+
+                    <p class="card-text paddingPost">{{post.text}}</p>
+
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-12 com-md-12 col-sm-12 col-xs-12 mb-12">
+
+                    <div class="inlineFlex gapNormal pointerCursor paddingPost w-25" id="postComments">
+
+                        <span class="material-icons">forum</span>
+                        <div id="commentCounter"> No comments</div>
+
+                    </div>
+
+                    <app-vote></app-vote>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

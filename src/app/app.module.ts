@@ -12,6 +12,8 @@ import {HttpClientModule} from "@angular/common/http";
 import { LoginComponent } from './auth/login/login.component';
 import {LocalStorage, NgxWebstorageModule} from "ngx-webstorage";
 import { HomeComponent } from './home/home.component';
+import { PostTileComponent } from './shared/post-tile/post-tile.component';
+import { VoteComponent } from './shared/vote/vote.component';
 
 
 @NgModule({
@@ -21,6 +23,8 @@ import { HomeComponent } from './home/home.component';
   RegisterComponent,
   LoginComponent,
   HomeComponent,
+  PostTileComponent,
+  VoteComponent
 ],
 	imports: [
 		BrowserModule,

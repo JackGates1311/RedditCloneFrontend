@@ -48,7 +48,7 @@
 
                     </a>
 
-                    <a routerLink="/login" class="nav-item nav-link d-none d-lg-block">
+                    <a href="#" class="nav-item nav-link d-none d-lg-block" data-toggle="modal" data-target="#btnLogin">
 
                         <span class="material-icons" data-toggle="tooltip" title="Login">login</span>
 
@@ -58,7 +58,7 @@
 
                     <a href="/manageUsers" class="nav-item nav-link d-lg-none">
 
-                        <div class="inlineFlexNav">
+                        <div class="inlineFlexNav gapNormal">
 
                             <span class="material-icons">group</span>
                             Manage users
@@ -69,7 +69,7 @@
 
                     <a href="/accountInfo" class="nav-item nav-link d-lg-none">
 
-                        <div class="inlineFlexNav">
+                        <div class="inlineFlexNav gapNormal">
 
                             <span class="material-icons">account_circle</span>
                             My account
@@ -80,7 +80,7 @@
 
                     <a href="/logout" class="nav-item nav-link d-lg-none">
 
-                        <div class="inlineFlexNav">
+                        <div class="inlineFlexNav gapNormal">
 
                             <span class="material-icons">logout</span>
                             Logout
@@ -91,7 +91,7 @@
 
                     <a routerLink="/register" class="nav-item nav-link d-lg-none">
 
-                        <div class="inlineFlexNav">
+                        <div class="inlineFlexNav gapNormal">
 
                             <span class="material-icons">person_add_alt</span>
                             Register
@@ -100,9 +100,20 @@
 
                     </a>
 
-                    <a routerLink="/login" class="nav-item nav-link d-lg-none">
+                    <!-- <a routerLink="/login" class="nav-item nav-link d-lg-none">
 
-                        <div class="inlineFlexNav">
+                        <div class="inlineFlexNav gapNormal">
+
+                            <span class="material-icons">login</span>
+                            Login
+
+                        </div>
+
+                    </a> !-->
+
+                    <a href="#" class="nav-item nav-link d-lg-none" data-toggle="modal" data-target="#btnLogin">
+
+                        <div class="inlineFlexNav gapNormal">
 
                             <span class="material-icons">login</span>
                             Login
@@ -119,5 +130,6 @@
 
     </nav>
 
+    <app-login></app-login>
 
 </header>

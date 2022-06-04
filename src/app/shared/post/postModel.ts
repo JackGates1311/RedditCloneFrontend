@@ -2,7 +2,7 @@ export class PostModel {
 
     postId: number;
     communityName: string;
-    creationDate: string[];
+    creationDate: Date;
     imagePath: string;
     text: string;
     title: string;

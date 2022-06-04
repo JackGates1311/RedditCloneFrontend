@@ -3,7 +3,9 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {LoginRequestPayload} from "./loginRequestPayload";
 import {AuthService} from "../service/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import $ from "jquery";
 import {throwError} from "rxjs";
+declare var $ : any;
 
 @Component({
   selector: 'app-login',
@@ -40,8 +42,6 @@ export class LoginComponent implements OnInit {
 
   login(): void {
 
-    //TODO for login functionality, use modal box instead (place current component inside modal box) of routing to new path and new controller ...
-
     this.loginRequestPayload.username = this.loginForm.get('username').value;
     this.loginRequestPayload.password = this.loginForm.get('password').value;
 
@@ -50,6 +50,9 @@ export class LoginComponent implements OnInit {
       this.isError = false;
       this.router.navigate(['/']);
       alert("Login successful");
+
+      $('#btnLogin').modal('hide');
+
       console.log("token: " + this.authService.getJwtToken());
 
       }, error => {
@@ -57,7 +60,7 @@ export class LoginComponent implements OnInit {
       this.isError = true;
       alert("Login failed");
 
+
     });
   }
-
 }

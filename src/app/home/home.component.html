@@ -1,22 +1,5 @@
 <div class="container-fluid paddingSmall w-75">
 
-    <div *ngFor="let post of posts">
-
-        <div class="card postContainer">
-
-            <div class="card-header">{{post.communityName}}</div>
-
-            <div class="card-body">
-
-                <p>{{post.title}}</p>
-
-                <p class="card-text">{{post.text}}</p>
-
-            </div>
-
-        </div>
-
-    </div>
-
+    <app-post-tile></app-post-tile>
 
 </div>

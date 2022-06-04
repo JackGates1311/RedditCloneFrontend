@@ -18,7 +18,9 @@
 
 a {
 
-    color: cornflowerblue;
+    color: black;
+    font-size: 12pt;
+    font-weight: 600;
 }
 
 a:hover, a:visited, a:focus {
@@ -34,7 +36,8 @@ h2 {
 
 h5 {
 
-    padding-top: 10px;
+    font-size: 12pt;
+    font-weight: 600;
 }
 
 h6 {
@@ -56,8 +59,9 @@ label{
 
 p {
 
-    text-align: center;
-    font-size: 20px;
+    text-align: left;
+    font-size: 12pt;
+    font-weight: 300;
 }
 
 table th, table td {
@@ -76,6 +80,11 @@ table th, table td {
     width: 40%;
 }
 
+.w-60 {
+
+    width: 60%;
+}
+
 .w-80 {
 
     width: 80%;
@@ -84,6 +93,11 @@ table th, table td {
 .w-90 {
 
     width: 90%;
+}
+
+.black {
+
+    color: black;
 }
 
 .red {
@@ -99,6 +113,11 @@ table th, table td {
 .blue {
 
     color: dodgerblue;
+}
+
+.dirty-white {
+
+    background-color: #F8F9FA;
 }
 
 .material-icons {
@@ -139,7 +158,27 @@ table th, table td {
     color: cornflowerblue;
 }
 
-.material-icons:hover, .inlineFlexNav:hover {
+.card-header:hover .material-icons {
+
+    color: cornflowerblue;
+}
+
+.card-header:hover  #communityName {
+
+    color: cornflowerblue;
+}
+
+.material-icons:hover, .inlineFlexNav:hover{
+
+    color: cornflowerblue;
+}
+
+#postComments:hover .material-icons {
+
+    color: cornflowerblue;
+}
+
+#postComments:hover #commentCounter {
 
     color: cornflowerblue;
 }
@@ -178,9 +217,22 @@ table th, table td {
     display: flex;
 }
 
-.card-text {
+.card-header {
 
-    font-size: 12pt;
+    padding: 5px;
+    height: 34px;
+}
+
+.checked {
+
+    color: cornflowerblue;
+}
+
+.center {
+
+    overflow: hidden;
+    margin: auto;
+
 }
 
 .col-1 {
@@ -196,6 +248,18 @@ table th, table td {
 .custom-file-input, textarea {
 
     margin-top: 5px;
+}
+
+.date-text {
+
+    font-size: 12pt;
+    font-weight: 200;
+}
+
+.flair-button {
+
+    height: 24px;
+    margin-right: 5px;
 }
 
 .img-responsive {
@@ -218,15 +282,10 @@ table th, table td {
     margin: 0;
 }
 
-.checked {
+.title {
 
-    color: cornflowerblue;
-}
+    vertical-align: baseline;
 
-.center {
-
-    overflow: hidden;
-    margin: auto;
 
 }
 
@@ -240,6 +299,11 @@ table th, table td {
     padding: 3%;
 }
 
+.paddingPost {
+
+    padding-top: 20px;
+}
+
 .floatRight {
 
     float: right;
@@ -249,6 +313,27 @@ table th, table td {
 .inlineFlex, .inlineFlexNav {
 
     display: inline-flex;
+}
+
+.gapSmall {
+
+    gap: 5px;
+
+}
+
+.postHeader {
+
+    font-size: 11pt;
+    font-style: inherit;
+    font-weight: 500;
+}
+.pointerCursor {
+
+    cursor: pointer;
+}
+
+.gapNormal {
+
     gap: 10px;
 }
 
