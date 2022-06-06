@@ -40,15 +40,9 @@ export class AuthService {
         }));
   }
 
-  getJwtToken() {
-
-      return this.localStorage.retrieve('authToken');
-  }
-
   logout() {
 
       this.localStorage.clear('authenticationToken');
       this.localStorage.clear('expiresIn');
   }
-
 }

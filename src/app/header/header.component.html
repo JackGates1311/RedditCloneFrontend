@@ -20,6 +20,13 @@
 
                 <div class="navbar-nav ml-auto">
 
+                    <a href="#" class="nav-item nav-link d-none d-lg-block" data-toggle="modal"
+                       data-target="#btnCreatePost">
+
+                        <span class="material-icons" data-toggle="tooltip" title="Create post">post_add</span>
+
+                    </a>
+
                     <a href="/manageUsers" class="nav-item nav-link d-none d-lg-block">
 
                         <span class="material-icons">group</span>
@@ -34,7 +41,7 @@
                     </a>
 
 
-                    <a href="/logout" class="nav-item nav-link d-none d-lg-block">
+                    <a href="/logout" *ngIf="false" class="nav-item nav-link d-none d-lg-block">
 
                         <span class="material-icons" data-toggle="tooltip" title="Logout">logout</span>
 
@@ -55,6 +62,17 @@
                     </a>
 
                     <!-- For mobile version of website -->
+
+                    <a href="#" class="nav-item nav-link d-lg-none" data-toggle="modal" data-target="#btnCreatePost">
+
+                        <div class="inlineFlexNav gapNormal">
+
+                            <span class="material-icons">post_add</span>
+                            Create post
+
+                        </div>
+
+                    </a>
 
                     <a href="/manageUsers" class="nav-item nav-link d-lg-none">
 
@@ -78,7 +96,7 @@
 
                     </a>
 
-                    <a href="/logout" class="nav-item nav-link d-lg-none">
+                    <a href="/logout" *ngIf="false" class="nav-item nav-link d-lg-none">
 
                         <div class="inlineFlexNav gapNormal">
 
@@ -131,5 +149,6 @@
     </nav>
 
     <app-login></app-login>
+    <app-post-create></app-post-create>
 
 </header>

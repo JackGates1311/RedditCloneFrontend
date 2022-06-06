@@ -205,12 +205,6 @@ table th, table td {
     position: relative;
 }
 
-.card {
-
-    min-height: 450px;
-    height: 100%;
-}
-
 .cardButtons {
 
     gap: 12px;

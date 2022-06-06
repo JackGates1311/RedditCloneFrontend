@@ -5,6 +5,7 @@ import {AuthService} from "../service/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import $ from "jquery";
 import {throwError} from "rxjs";
+import {LocalStorageService} from "ngx-webstorage";
 declare var $ : any;
 
 @Component({
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
   //successMessage: string;
   isError: boolean;
 
-  constructor(private authService: AuthService, private activatedRoute: ActivatedRoute, private router: Router) {
+  constructor(private authService: AuthService, private activatedRoute: ActivatedRoute, private router: Router,
+              private localStorage: LocalStorageService) {
 
     this.loginRequestPayload = {
 
@@ -49,11 +51,10 @@ export class LoginComponent implements OnInit {
 
       this.isError = false;
       this.router.navigate(['/']);
-      alert("Login successful");
 
       $('#btnLogin').modal('hide');
 
-      console.log("token: " + this.authService.getJwtToken());
+      console.log("token: " + this.localStorage.retrieve('authToken'));
 
       }, error => {
 

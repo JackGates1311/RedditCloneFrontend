@@ -1,0 +1,24 @@
+<div class="card">
+
+    <div class="card-header dirty-white">
+
+        <div [routerLink]="['/community', community.name]" class="inlineFlex gapSmall postHeader pointerCursor">
+
+            <span class="material-icons">account_circle</span>
+            <a id="communityName">{{community.name}}</a>
+
+        </div>
+
+    </div>
+
+    <div class="card-body">
+
+        <h5 class="card-title">About community:</h5>
+
+        <p class="card-text">{{community.description}}</p>
+
+        <a class="btn btn-primary marginTopDefault w-100">Join to this community</a>
+
+    </div>
+
+</div>
