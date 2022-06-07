@@ -14,6 +14,7 @@ import {Subscription} from "rxjs";
 export class PostTileComponent implements OnInit {
 
   posts: Array<PostModel> = [];
+
   communityName: string = this.route.snapshot.paramMap.get('name');
 
   private subscriptionName: Subscription;

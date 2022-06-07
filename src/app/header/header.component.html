@@ -4,7 +4,7 @@
 
             <div class="container-fluid">
 
-            <a href="/" class="navbar-brand mr-3">
+            <a routerLink="/" class="navbar-brand mr-3">
                 <img class="navBarLogoImageSize" id="logoImg" src="assets/images/Reddit-icon.png" alt="Reddit Clone">
             </a>
 
@@ -20,8 +20,7 @@
 
                 <div class="navbar-nav ml-auto">
 
-                    <a href="#" class="nav-item nav-link d-none d-lg-block" data-toggle="modal"
-                       data-target="#btnCreatePost">
+                    <a routerLink="/createNewPost" class="nav-item nav-link d-none d-lg-block">
 
                         <span class="material-icons" data-toggle="tooltip" title="Create post">post_add</span>
 
@@ -63,7 +62,7 @@
 
                     <!-- For mobile version of website -->
 
-                    <a href="#" class="nav-item nav-link d-lg-none" data-toggle="modal" data-target="#btnCreatePost">
+                    <a routerLink="/createNewPost" class="nav-item nav-link d-lg-none">
 
                         <div class="inlineFlexNav gapNormal">
 
@@ -149,6 +148,5 @@
     </nav>
 
     <app-login></app-login>
-    <app-post-create></app-post-create>
 
 </header>

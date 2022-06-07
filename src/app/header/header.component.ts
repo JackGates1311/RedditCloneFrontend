@@ -11,6 +11,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
 
+    //TODO Fix glitch with navbar in mobile mode (problem with hiding after selecting item 'ex. login' with routerLink instead of href...)
+
   }
 
 }

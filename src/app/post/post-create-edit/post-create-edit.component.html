@@ -1,0 +1,79 @@
+<div class="container-fluid paddingNormal w-50">
+
+    <form [formGroup]="createEditPostForm" (ngSubmit)="postId == null ? createPost() : editPost()">
+
+        <label for="communityName" [hidden]="postId != null ? true : false">Community:</label>
+
+        <select [ngClass]="[!createEditPostForm.get('communityName').valid && createEditPostForm.get('communityName').touched ? 'form-control is-invalid':'form-control']" id="communityName" name="communityName"
+                [formControlName]="'communityName'" [hidden]="postId != null ? true : false">
+
+            <option value="" hidden></option>
+
+            <option *ngFor="let community of communities" value="{{community.name}}" [selected]="post.communityName === community.name">
+                {{community.name}}</option>
+
+        </select>
+
+        <div *ngIf="!createEditPostForm.get('communityName').valid && createEditPostForm.get('communityName').touched"
+             id="communityNameFeedback" class="invalid-feedback">
+
+            Please select a community
+
+        </div>
+
+        <label for="title">Title:</label>
+
+        <input [ngClass]="[!createEditPostForm.get('title').valid && createEditPostForm.get('title').touched ?
+           'form-control is-invalid':'form-control']" type="text" name="title" id="title"
+               placeholder="Title" [formControlName]="'title'">
+
+        <div *ngIf="!createEditPostForm.get('title').valid && createEditPostForm.get('title').touched"
+             id="titleFeedback" class="invalid-feedback">
+
+            Please provide a valid title
+
+        </div>
+
+        <label for="text">Text:</label>
+
+        <textarea [ngClass]="[!createEditPostForm.get('text').valid &&
+            createEditPostForm.get('text').touched ? 'form-control is-invalid':'form-control']"
+                  [formControlName]="'text'" id="text" name="text"
+                  rows="4"></textarea>
+
+        <div *ngIf="!createEditPostForm.get('text').valid &&
+        createEditPostForm.get('text').touched"
+             id="textFeedback" class="invalid-feedback">
+
+            Please provide a valid text
+
+        </div>
+
+        <label for="flairs">Flairs:</label>
+
+        <select class="form-control" id="flairs" name="flairs">
+
+            <option value="" hidden></option>
+
+        </select>
+
+        <label style="margin-top: 7px;" for="imagePath">Image:</label>
+
+        <div class="custom-file">
+
+            <input type="file" class="custom-file-input" id="imagePath"
+                   [formControlName]="'imagePath'" name="imagePath">
+
+            <label class="custom-file-label" id="imageLabel" for="imagePath">
+                Select image for post
+            </label>
+
+        </div>
+
+        <input class="btn btn-primary btn-sm marginTopDefault" type="submit"
+               [value]="postId != null ? 'Save changes' : 'Create post'" [disabled]="createEditPostForm.invalid"
+               style="margin-top: 21px;">
+
+    </form>
+
+</div>

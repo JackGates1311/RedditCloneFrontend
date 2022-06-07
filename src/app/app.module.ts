@@ -19,7 +19,7 @@ import { CommunityComponent } from './community/community.component';
 import {CommunityInfoTileComponent} from './shared/community-info-tile/community-info-tile.component';
 import { CommunityFlairsTileComponent } from './shared/community-flairs-tile/community-flairs-tile.component';
 import { CommunityRulesTileComponent } from './shared/community-rules-tile/community-rules-tile.component';
-import { PostCreateComponent } from './post/post-create/post-create.component';
+import { PostCreateEditComponent } from './post/post-create-edit/post-create-edit.component';
 import {PostListComponent} from "./shared/post-list/post-list.component";
 
 
@@ -38,7 +38,7 @@ import {PostListComponent} from "./shared/post-list/post-list.component";
 		CommunityInfoTileComponent,
 		CommunityFlairsTileComponent,
 		CommunityRulesTileComponent,
-		PostCreateComponent,
+		PostCreateEditComponent,
 		PostListComponent
 	],
 	imports: [
