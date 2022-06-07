@@ -1,6 +1,6 @@
-import {EventEmitter, Injectable} from "@angular/core";
+import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable, Subject} from "rxjs";
 import {PostModel} from "./postModel";
 import {CreatePostRequestPayload} from "../../post/post-create/createPostRequestPayload";
 import {AuthService} from "../../auth/service/auth.service";
@@ -12,7 +12,7 @@ import {LocalStorageService} from "ngx-webstorage";
 
 export class PostService {
 
-    dataUpdated:EventEmitter<any> = new EventEmitter();
+    private refresh: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
     constructor(private http: HttpClient, private localStorage: LocalStorageService) {
     }
@@ -36,5 +36,14 @@ export class PostService {
             {headers: reqHeaders, responseType: "text"});
     }
 
+    public getRefresh(): Observable<boolean> {
+
+        return this.refresh.asObservable();
+    }
+
+    public setRefresh(value: boolean): void {
+
+        this.refresh.next(value);
+    }
 
 }

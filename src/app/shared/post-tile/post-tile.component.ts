@@ -3,6 +3,7 @@ import {PostService} from "../post/postService";
 import {PostModel} from "../post/postModel";
 import { ActivatedRoute } from '@angular/router';
 import {CommunityService} from "../community/communityService";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-post-tile',
@@ -15,15 +16,13 @@ export class PostTileComponent implements OnInit {
   posts: Array<PostModel> = [];
   communityName: string = this.route.snapshot.paramMap.get('name');
 
+  private subscriptionName: Subscription;
+
   constructor(private route: ActivatedRoute, private postService: PostService) {
 
     if(this.communityName == null){
 
-      this.postService.getAllPosts().subscribe(post => {
-
-        this.posts = post;
-
-      });
+      this.getAllPosts();
 
     } else {
 
@@ -39,6 +38,26 @@ export class PostTileComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.postService.getRefresh().subscribe((value: boolean) => {
+
+      if(value) {
+
+        this.getAllPosts();
+
+      }
+
+    })
 
   }
+
+  getAllPosts() {
+
+    this.postService.getAllPosts().subscribe(post => {
+
+      this.posts = post;
+
+    });
+
+  }
+
 }

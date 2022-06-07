@@ -6,8 +6,6 @@ import {Router} from "@angular/router";
 import {CommunityModel} from "../../shared/community/communityModel";
 import {CommunityService} from "../../shared/community/communityService";
 import {PostTileComponent} from "../../shared/post-tile/post-tile.component";
-import {PostModel} from "../../shared/post/postModel";
-import {PostListComponent} from "../../shared/post-list/post-list.component";
 
 declare var $ : any;
 
@@ -16,6 +14,7 @@ declare var $ : any;
   templateUrl: './post-create.component.html',
   styleUrls: ['./post-create.component.scss']
 })
+
 export class PostCreateComponent implements OnInit {
 
   communities: Array<CommunityModel> = [];
@@ -64,21 +63,9 @@ export class PostCreateComponent implements OnInit {
 
       alert("Post is successfully created");
 
-      // TODO Here add logic for updating posts
-
-
-      let currentUrl = this.router.url;
-
-      this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-
-          this.router.navigate([currentUrl]);
-
-      });
-
+      this.refresh();
 
       $('#btnCreatePost').modal('hide');
-
-
 
     }, error => {
 
@@ -91,8 +78,12 @@ export class PostCreateComponent implements OnInit {
         alert("Error while creating post because of database error");
       }
 
-
     })
+  }
+
+  public refresh() {
+
+    this.postService.setRefresh(true);
   }
 
 }
