@@ -24,8 +24,7 @@
         <label for="title">Title:</label>
 
         <input [ngClass]="[!createEditPostForm.get('title').valid && createEditPostForm.get('title').touched ?
-           'form-control is-invalid':'form-control']" type="text" name="title" id="title"
-               placeholder="Title" [formControlName]="'title'">
+           'form-control is-invalid':'form-control']" type="text" name="title" id="title" [formControlName]="'title'">
 
         <div *ngIf="!createEditPostForm.get('title').valid && createEditPostForm.get('title').touched"
              id="titleFeedback" class="invalid-feedback">

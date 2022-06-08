@@ -3,8 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import {RegisterComponent} from "./auth/register/register.component";
 import {LoginComponent} from "./auth/login/login.component";
 import {HomeComponent} from "./home/home.component";
-import {CommunityComponent} from "./community/community.component";
+import {CommunityViewComponent} from "./community/community-view/community-view.component";
 import {PostCreateEditComponent} from "./post/post-create-edit/post-create-edit.component";
+import {CommunityCreateEditComponent} from "./community/community-create-edit/community-create-edit.component";
 
 const routes: Routes = [
 	{
@@ -17,7 +18,7 @@ const routes: Routes = [
 	},
 	{
 		path: 'community/:name',
-		component: CommunityComponent
+		component: CommunityViewComponent
 	},
 	{
 		path: 'createNewPost',
@@ -26,6 +27,15 @@ const routes: Routes = [
 	{
 		path: 'editPost/:id',
 		component: PostCreateEditComponent
+	},
+	{
+		path: 'createNewCommunity',
+		component: CommunityCreateEditComponent
+	},
+	{
+
+		path: 'editCommunity/:id',
+		component: CommunityCreateEditComponent
 	}
 ];
 

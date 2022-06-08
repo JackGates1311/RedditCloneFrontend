@@ -153,17 +153,12 @@ table th, table td {
     cursor: pointer;
 }
 
-.inlineFlexNav:hover .material-icons {
+.hover-effect:hover .material-icons {
 
     color: cornflowerblue;
 }
 
-.card-header:hover .material-icons {
-
-    color: cornflowerblue;
-}
-
-.card-header:hover  #communityName {
+.hover-effect:hover #communityName {
 
     color: cornflowerblue;
 }

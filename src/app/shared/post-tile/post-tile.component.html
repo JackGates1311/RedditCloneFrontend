@@ -2,7 +2,7 @@
 
     <div class="card postContainer ">
 
-        <div class="card-header dirty-white">
+        <div class="card-header hover-effect dirty-white">
 
             <div class="inlineFlex w-100">
 
@@ -38,7 +38,11 @@
 
                     <div class="inlineFlex gapNormal pointerCursor alignRight w-25">
 
-                        <span class="material-icons" [routerLink]="['/editPost', post.postId]">edit</span>
+                        <span *ngIf="authService.getJwtToken() != null"
+                              class="material-icons" [routerLink]="['/editPost', post.postId]">edit</span>
+
+                        <span *ngIf="authService.getJwtToken() != null"
+                              class="material-icons" (click)="deletePost(post.postId)">delete</span>
 
                     </div>
 
@@ -67,7 +71,7 @@
 
                     </div>
 
-                    <app-vote></app-vote>
+                    <app-vote *ngIf="authService.getJwtToken() != null"></app-vote>
 
                 </div>
 

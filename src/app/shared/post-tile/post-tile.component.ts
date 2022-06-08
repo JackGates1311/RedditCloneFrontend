@@ -4,6 +4,8 @@ import {PostModel} from "../post/postModel";
 import { ActivatedRoute } from '@angular/router';
 import {CommunityService} from "../community/communityService";
 import {Subscription} from "rxjs";
+import {AuthService} from "../../auth/service/auth.service";
+import {RefreshService} from "../service/refreshService";
 
 @Component({
   selector: 'app-post-tile',
@@ -17,9 +19,8 @@ export class PostTileComponent implements OnInit {
 
   communityName: string = this.route.snapshot.paramMap.get('name');
 
-  private subscriptionName: Subscription;
-
-  constructor(private route: ActivatedRoute, private postService: PostService) {
+  constructor(private route: ActivatedRoute, private postService: PostService, public authService: AuthService,
+              private refreshService: RefreshService) {
 
     if(this.communityName == null){
 
@@ -27,11 +28,7 @@ export class PostTileComponent implements OnInit {
 
     } else {
 
-      this.postService.getPostsByCommunityName(this.communityName).subscribe(post => {
-
-        this.posts = post;
-
-      })
+      this.getPostsByCommunityName();
 
     }
 
@@ -39,15 +36,31 @@ export class PostTileComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.postService.getRefresh().subscribe((value: boolean) => {
+    if(this.communityName == null) {
 
-      if(value) {
+      this.refreshService.getRefresh().subscribe((value: boolean) => {
 
-        this.getAllPosts();
+        if(value) {
 
-      }
+          this.getAllPosts();
 
-    })
+        }
+
+      });
+
+    } else {
+
+      this.refreshService.getRefresh().subscribe((value: boolean) => {
+
+        if(value) {
+
+          this.getPostsByCommunityName();
+
+        }
+
+      });
+
+    }
 
   }
 
@@ -59,6 +72,33 @@ export class PostTileComponent implements OnInit {
 
     });
 
+  }
+
+  getPostsByCommunityName() {
+
+    this.postService.getPostsByCommunityName(this.communityName).subscribe(post => {
+
+      this.posts = post;
+
+    });
+
+  }
+
+  deletePost(postId: number) {
+
+    this.postService.deletePostById(postId).subscribe(post => {
+
+      this.posts = post;
+
+      this.refresh();
+
+    })
+
+  }
+
+  public refresh() {
+
+    this.refreshService.setRefresh(true);
   }
 
 }

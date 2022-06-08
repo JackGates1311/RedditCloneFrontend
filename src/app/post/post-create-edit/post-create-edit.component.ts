@@ -7,8 +7,8 @@ import {CommunityModel} from "../../shared/community/communityModel";
 import {CommunityService} from "../../shared/community/communityService";
 import {PostTileComponent} from "../../shared/post-tile/post-tile.component";
 import {PostModel} from "../../shared/post/postModel";
-
-declare var $ : any;
+import {RefreshService} from "../../shared/service/refreshService";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-post-create',
@@ -29,7 +29,7 @@ export class PostCreateEditComponent implements OnInit {
   postId: string = this.route.snapshot.paramMap.get('id');
 
   constructor(private postService: PostService, private communityService: CommunityService, private router:Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute, private refreshService: RefreshService, private _location: Location) {
 
     this.communityService.getAllCommunities().subscribe(community => {
 
@@ -60,8 +60,6 @@ export class PostCreateEditComponent implements OnInit {
 
     if(this.postId != null) {
 
-      // set custom form action and button name
-
       this.postService.getPostById(this.postId).subscribe(post => {
 
         this.post = post;
@@ -89,10 +87,6 @@ export class PostCreateEditComponent implements OnInit {
 
       this.refresh();
 
-      this.router.navigateByUrl('');
-
-      $('#btnCreatePost').modal('hide');
-
     }, error => {
 
       if(error.status === 403) {
@@ -107,7 +101,6 @@ export class PostCreateEditComponent implements OnInit {
     });
   }
 
-
   editPost() {
 
     this.getDataFromFormGroup();
@@ -116,19 +109,15 @@ export class PostCreateEditComponent implements OnInit {
 
       this.refresh();
 
-      this.router.navigateByUrl('');
-
-      $('#btnCreatePost').modal('hide');
-
     }, error => {
 
       if(error.status === 403) {
 
-        alert("To create new post, you must be logged in first");
+        alert("To update new post, you must be logged in first");
 
       } else {
 
-        alert("Error while creating post because of database error");
+        alert("Error while updating post because of database error");
       }
 
     });
@@ -144,7 +133,9 @@ export class PostCreateEditComponent implements OnInit {
 
   public refresh() {
 
-    this.postService.setRefresh(true);
+    this.refreshService.setRefresh(true);
+    this._location.back();
+
   }
 
 }

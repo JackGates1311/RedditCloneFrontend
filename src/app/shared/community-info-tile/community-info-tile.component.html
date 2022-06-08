@@ -2,10 +2,18 @@
 
     <div class="card-header dirty-white">
 
-        <div [routerLink]="['/community', community.name]" class="inlineFlex gapSmall postHeader pointerCursor">
+        <div [routerLink]="['/community', community.name]" class="inlineFlex hover-effect
+            gapSmall postHeader pointerCursor w-75">
 
             <span class="material-icons">account_circle</span>
             <a id="communityName">{{community.name}}</a>
+
+        </div>
+
+        <div class="inlineFlex gapNormal alignRight w-25">
+
+            <span *ngIf="authService.getJwtToken() != null" class="material-icons pointerCursor"
+                  [routerLink]="['/editCommunity', community.communityId]">edit</span>
 
         </div>
 
@@ -13,7 +21,11 @@
 
     <div class="card-body">
 
-        <h5 class="card-title">About community:</h5>
+        <div class="inlineFlex gapNormal w-75">
+
+            <h5 class="card-title">About community:</h5>
+
+        </div>
 
         <p class="card-text">{{community.description}}</p>
 

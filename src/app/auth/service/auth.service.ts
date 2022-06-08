@@ -1,5 +1,5 @@
 import {EventEmitter, Injectable, Output} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {RegisterRequestPayload} from "../register/registerRequestPayload";
 import {Observable} from "rxjs";
 import {LoginRequestPayload} from "../login/loginRequestPayload";
@@ -40,9 +40,22 @@ export class AuthService {
         }));
   }
 
+  getJwtToken(): string {
+
+      return this.localStorage.retrieve('authToken');
+  }
+
   logout() {
 
-      this.localStorage.clear('authenticationToken');
+      this.localStorage.clear('authToken');
       this.localStorage.clear('expiresIn');
   }
+
+
+  public getRequestHeaders(): HttpHeaders {
+
+      return new HttpHeaders({'Authorization': 'Bearer ' + this.getJwtToken()});
+
+  }
+
 }

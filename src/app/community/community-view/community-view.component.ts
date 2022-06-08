@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {CommunityModel} from "../shared/community/communityModel";
-import {CommunityService} from "../shared/community/communityService";
+import {CommunityModel} from "../../shared/community/communityModel";
+import {CommunityService} from "../../shared/community/communityService";
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-community',
-  templateUrl: './community.component.html',
-  styleUrls: ['./community.component.scss']
+  templateUrl: './community-view.component.html',
+  styleUrls: ['./community-view.component.scss']
 })
 
-export class CommunityComponent implements OnInit {
+export class CommunityViewComponent implements OnInit {
 
   community: CommunityModel = new CommunityModel();
 

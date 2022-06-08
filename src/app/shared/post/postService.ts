@@ -12,9 +12,7 @@ import {LocalStorageService} from "ngx-webstorage";
 
 export class PostService {
 
-    private refresh: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
-    constructor(private http: HttpClient, private localStorage: LocalStorageService) {
+    constructor(private http: HttpClient, public authService: AuthService) {
     }
 
     getAllPosts(): Observable<Array<PostModel>> {
@@ -30,7 +28,7 @@ export class PostService {
     createPost(createEditPostRequestPayload: CreateEditPostRequestPayload): Observable<any> {
 
         return this.http.post('http://localhost:8080/api/posts/createPost', createEditPostRequestPayload,
-            {headers: this.getRequestHeaders(), responseType: "text"});
+            {headers: this.authService.getRequestHeaders(), responseType: "text"});
     }
 
     getPostById(postId: string): Observable<PostModel> {
@@ -40,23 +38,15 @@ export class PostService {
 
     updatePost(createEditPostRequestPayload: CreateEditPostRequestPayload, postId: string): Observable<any> {
 
-        return this.http.put<any>('http://localhost:8080/api/posts/' + postId, createEditPostRequestPayload, {headers: this.getRequestHeaders()});
+        return this.http.put<any>('http://localhost:8080/api/posts/' + postId, createEditPostRequestPayload,
+            {headers: this.authService.getRequestHeaders()});
     }
 
-    public getRequestHeaders(): HttpHeaders {
+    deletePostById(postId: number): Observable<any> {
 
-        return new HttpHeaders({'Authorization': 'Bearer ' + this.localStorage.retrieve('authToken')});
+        return this.http.delete<any>('http://localhost:8080/api/posts/' + postId,
+            {headers: this.authService.getRequestHeaders()});
 
-    }
-
-    public getRefresh(): Observable<boolean> {
-
-        return this.refresh.asObservable();
-    }
-
-    public setRefresh(value: boolean): void {
-
-        this.refresh.next(value);
     }
 
 }

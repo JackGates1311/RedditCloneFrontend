@@ -20,51 +20,62 @@
 
                 <div class="navbar-nav ml-auto">
 
-                    <a routerLink="/createNewPost" class="nav-item nav-link d-none d-lg-block">
+                    <a routerLink="/createNewPost" *ngIf="authService.getJwtToken() != null"
+                       class="nav-item nav-link d-none d-lg-block">
 
                         <span class="material-icons" data-toggle="tooltip" title="Create post">post_add</span>
 
                     </a>
 
-                    <a href="/manageUsers" class="nav-item nav-link d-none d-lg-block">
+                    <a routerLink="/createNewCommunity" *ngIf="authService.getJwtToken() != null"
+                       class="nav-item nav-link d-none d-lg-block">
+
+                        <span class="material-icons" data-toggle="tooltip" title="Create community">group_add</span>
+
+                    </a>
+
+                    <a href="/manageUsers" *ngIf="authService.getJwtToken() != null"
+                       class="nav-item nav-link d-none d-lg-block">
 
                         <span class="material-icons">group</span>
 
                     </a>
 
-                    <a href="/accountInfo" class="nav-item nav-link d-none d-lg-block">
+                    <a href="/accountInfo" *ngIf="authService.getJwtToken() != null"
+                       class="nav-item nav-link d-none d-lg-block">
 
                             <span class="material-icons" data-toggle="tooltip" title="My account">
                                 account_circle</span>
 
                     </a>
 
-
-                    <a href="/logout" *ngIf="false" class="nav-item nav-link d-none d-lg-block">
-
-                        <span class="material-icons" data-toggle="tooltip" title="Logout">logout</span>
-
-                    </a>
-
-
-
-                    <a routerLink="/register" class="nav-item nav-link d-none d-lg-block">
+                    <a *ngIf="authService.getJwtToken() == null"
+                       routerLink="/register" class="nav-item nav-link d-none d-lg-block">
 
                         <span class="material-icons" data-toggle="tooltip" title="Register">person_add_alt</span>
 
                     </a>
 
-                    <a href="#" class="nav-item nav-link d-none d-lg-block" data-toggle="modal" data-target="#btnLogin">
+                    <a href="#" *ngIf="authService.getJwtToken() == null"
+                       class="nav-item nav-link d-none d-lg-block" data-toggle="modal" data-target="#btnLogin">
 
                         <span class="material-icons" data-toggle="tooltip" title="Login">login</span>
 
                     </a>
 
+                    <a (click)="logout()" *ngIf="authService.getJwtToken() != null"
+                       class="nav-item nav-link d-none d-lg-block">
+
+                        <span class="material-icons" data-toggle="tooltip" title="Logout">logout</span>
+
+                    </a>
+
                     <!-- For mobile version of website -->
 
-                    <a routerLink="/createNewPost" class="nav-item nav-link d-lg-none">
+                    <a routerLink="/createNewPost" *ngIf="authService.getJwtToken() != null"
+                       class="nav-item nav-link d-lg-none">
 
-                        <div class="inlineFlexNav gapNormal">
+                        <div class="inlineFlexNav hover-effect gapNormal">
 
                             <span class="material-icons">post_add</span>
                             Create post
@@ -73,9 +84,22 @@
 
                     </a>
 
-                    <a href="/manageUsers" class="nav-item nav-link d-lg-none">
+                    <a routerLink="/createNewCommunity" *ngIf="authService.getJwtToken() != null"
+                       class="nav-item nav-link d-lg-none">
 
-                        <div class="inlineFlexNav gapNormal">
+                        <div class="inlineFlexNav hover-effect gapNormal">
+
+                            <span class="material-icons">group_add</span>
+                            Create community
+
+                        </div>
+
+                    </a>
+
+                    <a href="/manageUsers" *ngIf="authService.getJwtToken() != null"
+                       class="nav-item nav-link d-lg-none">
+
+                        <div class="inlineFlexNav hover-effect gapNormal">
 
                             <span class="material-icons">group</span>
                             Manage users
@@ -84,9 +108,10 @@
 
                     </a>
 
-                    <a href="/accountInfo" class="nav-item nav-link d-lg-none">
+                    <a href="/accountInfo" *ngIf="authService.getJwtToken() != null"
+                       class="nav-item nav-link d-lg-none">
 
-                        <div class="inlineFlexNav gapNormal">
+                        <div class="inlineFlexNav hover-effect gapNormal">
 
                             <span class="material-icons">account_circle</span>
                             My account
@@ -95,20 +120,10 @@
 
                     </a>
 
-                    <a href="/logout" *ngIf="false" class="nav-item nav-link d-lg-none">
+                    <a routerLink="/register" *ngIf="authService.getJwtToken() == null"
+                       class="nav-item nav-link d-lg-none">
 
-                        <div class="inlineFlexNav gapNormal">
-
-                            <span class="material-icons">logout</span>
-                            Logout
-
-                        </div>
-
-                    </a>
-
-                    <a routerLink="/register" class="nav-item nav-link d-lg-none">
-
-                        <div class="inlineFlexNav gapNormal">
+                        <div class="inlineFlexNav hover-effect gapNormal">
 
                             <span class="material-icons">person_add_alt</span>
                             Register
@@ -117,23 +132,26 @@
 
                     </a>
 
-                    <!-- <a routerLink="/login" class="nav-item nav-link d-lg-none">
+                    <a href="#" class="nav-item nav-link d-lg-none" data-toggle="modal"
+                       *ngIf="authService.getJwtToken() == null" data-target="#btnLogin">
 
-                        <div class="inlineFlexNav gapNormal">
+                        <div class="inlineFlexNav hover-effect gapNormal">
 
                             <span class="material-icons">login</span>
                             Login
 
                         </div>
 
-                    </a> !-->
+                    </a>
 
-                    <a href="#" class="nav-item nav-link d-lg-none" data-toggle="modal" data-target="#btnLogin">
 
-                        <div class="inlineFlexNav gapNormal">
+                    <a (click)="logout()" *ngIf="authService.getJwtToken() != null"
+                       class="nav-item nav-link d-lg-none">
 
-                            <span class="material-icons">login</span>
-                            Login
+                        <div class="inlineFlexNav hover-effect gapNormal">
+
+                            <span class="material-icons">logout</span>
+                            Logout
 
                         </div>
 

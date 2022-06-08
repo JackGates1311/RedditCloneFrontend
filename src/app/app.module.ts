@@ -15,12 +15,13 @@ import { PostTileComponent } from './shared/post-tile/post-tile.component';
 import { VoteComponent } from './shared/vote/vote.component';
 import { PostCommentsComponent } from './shared/post-comments/post-comments.component';
 import { CommentTileComponent } from './shared/comment-tile/comment-tile.component';
-import { CommunityComponent } from './community/community.component';
+import { CommunityViewComponent } from './community/community-view/community-view.component';
 import {CommunityInfoTileComponent} from './shared/community-info-tile/community-info-tile.component';
 import { CommunityFlairsTileComponent } from './shared/community-flairs-tile/community-flairs-tile.component';
 import { CommunityRulesTileComponent } from './shared/community-rules-tile/community-rules-tile.component';
 import { PostCreateEditComponent } from './post/post-create-edit/post-create-edit.component';
 import {PostListComponent} from "./shared/post-list/post-list.component";
+import { CommunityCreateEditComponent } from './community/community-create-edit/community-create-edit.component';
 
 
 @NgModule({
@@ -34,12 +35,13 @@ import {PostListComponent} from "./shared/post-list/post-list.component";
 		VoteComponent,
 		PostCommentsComponent,
 		CommentTileComponent,
-		CommunityComponent,
+		CommunityViewComponent,
 		CommunityInfoTileComponent,
 		CommunityFlairsTileComponent,
 		CommunityRulesTileComponent,
 		PostCreateEditComponent,
-		PostListComponent
+		PostListComponent,
+  		CommunityCreateEditComponent,
 	],
 	imports: [
 		BrowserModule,

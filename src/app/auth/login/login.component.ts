@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
 
       $('#btnLogin').modal('hide');
 
-      console.log("token: " + this.localStorage.retrieve('authToken'));
+      console.log("token: " + this.authService.getJwtToken());
 
       }, error => {
 

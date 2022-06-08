@@ -1,0 +1,59 @@
+<div class="container-fluid paddingNormal w-50">
+
+    <form [formGroup]="createEditCommunityForm" (ngSubmit)="communityId == null ? createCommunity() : editCommunity()">
+
+        <label *ngIf="communityId == null" for="name">Community name:</label>
+
+        <input *ngIf="communityId == null"
+               [ngClass]="[!createEditCommunityForm.get('name').valid && createEditCommunityForm.get('name').touched ?
+           'form-control is-invalid':'form-control']" type="text" name="name" id="name" [formControlName]="'name'">
+
+        <div *ngIf="!createEditCommunityForm.get('name').valid && createEditCommunityForm.get('name').touched"
+             id="nameFeedback" class="invalid-feedback">
+
+            Please provide a valid community name
+
+        </div>
+
+        <label for="description">Description:</label>
+
+        <textarea [ngClass]="[!createEditCommunityForm.get('description').valid &&
+            createEditCommunityForm.get('description').touched ? 'form-control is-invalid':'form-control']"
+                  [formControlName]="'description'" id="description" name="description"
+                  rows="4"></textarea>
+
+        <div *ngIf="!createEditCommunityForm.get('description').valid &&
+            createEditCommunityForm.get('description').touched" id="textFeedback" class="invalid-feedback">
+
+            Please provide a valid description
+
+        </div>
+
+        <label for="rules">Rules:</label>
+
+        <textarea class="form-control"
+                  [formControlName]="'rules'" id="rules" name="rules"
+                  rows="4" disabled></textarea>
+
+        <div *ngIf="!createEditCommunityForm.get('rules').valid &&
+            createEditCommunityForm.get('rules').touched" id="rulesFeedback" class="invalid-feedback">
+
+            Please provide a valid rules
+
+        </div>
+
+        <label for="flairs">Flairs:</label>
+
+        <select class="form-control" id="flairs" name="flairs">
+
+            <option value="" hidden></option>
+
+        </select>
+
+        <input class="btn btn-primary btn-sm marginTopDefault" type="submit"
+               [value]="communityId != null ? 'Save changes' : 'Create community'"
+               [disabled]="createEditCommunityForm.invalid">
+
+    </form>
+
+</div>

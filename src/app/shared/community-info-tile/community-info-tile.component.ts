@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {AuthService} from "../../auth/service/auth.service";
 
 @Component({
   selector: 'app-community-info-tile',
@@ -10,9 +11,12 @@ export class CommunityInfoTileComponent implements OnInit {
 
   @Input() community;
 
-  constructor() { }
+  constructor(public authService: AuthService) {
+
+  }
 
   ngOnInit(): void {
+
   }
 
 }
