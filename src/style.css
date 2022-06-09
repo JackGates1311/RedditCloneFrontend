@@ -125,6 +125,11 @@ table th, table td {
     color: #00000080;
 }
 
+.material-icons-checked {
+
+    color: cornflowerblue;
+}
+
 .silver {
 
     color: silver;
@@ -308,6 +313,11 @@ table th, table td {
 
     gap: 5px;
 
+}
+
+.gapReverse {
+
+    gap: -5px;
 }
 
 .postHeader {

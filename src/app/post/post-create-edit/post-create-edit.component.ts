@@ -42,7 +42,8 @@ export class PostCreateEditComponent implements OnInit {
       communityName: '',
       imagePath: '',
       text: '',
-      title: ''
+      title: '',
+      reactionCount: 0
     };
 
 

@@ -4,5 +4,6 @@ export interface CreateEditPostRequestPayload {
     imagePath: string;
     text: string;
     title: string;
+    reactionCount: number;
 
 }

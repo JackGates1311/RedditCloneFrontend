@@ -78,7 +78,7 @@ export class CommunityCreateEditComponent implements OnInit {
 
       } else {
 
-        alert("Error while creating post because of database error");
+        alert("Error while creating community because of database error");
       }
 
     });

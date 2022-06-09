@@ -12,7 +12,7 @@ import { LoginComponent } from './auth/login/login.component';
 import {LocalStorage, NgxWebstorageModule} from "ngx-webstorage";
 import { HomeComponent } from './home/home.component';
 import { PostTileComponent } from './shared/post-tile/post-tile.component';
-import { VoteComponent } from './shared/vote/vote.component';
+import { ReactionComponent } from './shared/reaction/reaction.component';
 import { PostCommentsComponent } from './shared/post-comments/post-comments.component';
 import { CommentTileComponent } from './shared/comment-tile/comment-tile.component';
 import { CommunityViewComponent } from './community/community-view/community-view.component';
@@ -32,7 +32,7 @@ import { CommunityCreateEditComponent } from './community/community-create-edit/
 		LoginComponent,
 		HomeComponent,
 		PostTileComponent,
-		VoteComponent,
+		ReactionComponent,
 		PostCommentsComponent,
 		CommentTileComponent,
 		CommunityViewComponent,

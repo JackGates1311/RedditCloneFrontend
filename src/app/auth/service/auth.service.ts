@@ -32,6 +32,7 @@ export class AuthService {
 
           this.localStorage.store('authToken', data.authToken);
           this.localStorage.store('expiresIn', data.expiresIn);
+          this.localStorage.store('username', loginRequestPayload.username)
 
           this.loggedIn.emit(true);
 
@@ -49,6 +50,7 @@ export class AuthService {
 
       this.localStorage.clear('authToken');
       this.localStorage.clear('expiresIn');
+      this.localStorage.clear('username');
   }
 
 

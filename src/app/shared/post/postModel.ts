@@ -7,5 +7,6 @@ export class PostModel {
     text: string;
     title: string;
     username: string;
+    reactionCount: number;
 
 }

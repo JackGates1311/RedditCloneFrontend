@@ -71,7 +71,7 @@
 
                     </div>
 
-                    <app-vote *ngIf="authService.getJwtToken() != null"></app-vote>
+                    <app-reaction *ngIf="authService.getJwtToken() != null" [post]="post"></app-reaction>
 
                 </div>
 
