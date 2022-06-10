@@ -38,10 +38,10 @@
 
                     <div class="inlineFlex gapNormal pointerCursor alignRight w-25">
 
-                        <span *ngIf="authService.getJwtToken() != null"
+                        <span *ngIf="authService.getJwtToken() != null && localStorage.retrieve('username') == post.username"
                               class="material-icons" [routerLink]="['/editPost', post.postId]">edit</span>
 
-                        <span *ngIf="authService.getJwtToken() != null"
+                        <span *ngIf="authService.getJwtToken() != null && localStorage.retrieve('username') == post.username"
                               class="material-icons" (click)="deletePost(post.postId)">delete</span>
 
                     </div>

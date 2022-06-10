@@ -6,6 +6,7 @@ import {CommunityService} from "../community/communityService";
 import {Subscription} from "rxjs";
 import {AuthService} from "../../auth/service/auth.service";
 import {RefreshService} from "../service/refreshService";
+import {LocalStorageService} from "ngx-webstorage";
 
 @Component({
   selector: 'app-post-tile',
@@ -20,7 +21,7 @@ export class PostTileComponent implements OnInit {
   communityName: string = this.route.snapshot.paramMap.get('name');
 
   constructor(private route: ActivatedRoute, private postService: PostService, public authService: AuthService,
-              private refreshService: RefreshService) {
+              private refreshService: RefreshService, public localStorage: LocalStorageService) {
 
     if(this.communityName == null){
 
