@@ -22,6 +22,8 @@ import { CommunityRulesTileComponent } from './shared/community-rules-tile/commu
 import { PostCreateEditComponent } from './post/post-create-edit/post-create-edit.component';
 import {PostListComponent} from "./shared/post-list/post-list.component";
 import { CommunityCreateEditComponent } from './community/community-create-edit/community-create-edit.component';
+import { ChangePasswordComponent } from './auth/change-password/change-password.component';
+import { EditUserDataComponent } from './auth/edit-user-data/edit-user-data.component';
 
 
 @NgModule({
@@ -42,6 +44,8 @@ import { CommunityCreateEditComponent } from './community/community-create-edit/
 		PostCreateEditComponent,
 		PostListComponent,
   		CommunityCreateEditComponent,
+    	ChangePasswordComponent,
+    	EditUserDataComponent,
 	],
 	imports: [
 		BrowserModule,

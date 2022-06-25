@@ -41,7 +41,7 @@
 
                     </a>
 
-                    <a href="/accountInfo" *ngIf="authService.getJwtToken() != null"
+                    <a routerLink="/accountInfo" *ngIf="authService.getJwtToken() != null"
                        class="nav-item nav-link d-none d-lg-block">
 
                             <span class="material-icons" data-toggle="tooltip" title="My account">
@@ -108,7 +108,7 @@
 
                     </a>
 
-                    <a href="/accountInfo" *ngIf="authService.getJwtToken() != null"
+                    <a routerLink="/accountInfo" *ngIf="authService.getJwtToken() != null"
                        class="nav-item nav-link d-lg-none">
 
                         <div class="inlineFlexNav hover-effect gapNormal">

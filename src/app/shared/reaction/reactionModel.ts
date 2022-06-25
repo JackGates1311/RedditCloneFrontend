@@ -4,4 +4,5 @@ export class ReactionModel {
     reactionType: string;
     postId: number;
     username: string;
+    userId: number;
 }

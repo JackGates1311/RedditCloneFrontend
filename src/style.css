@@ -205,6 +205,12 @@ table th, table td {
     position: relative;
 }
 
+.btn-secondary {
+
+    background-color: #b5b5b5;
+    border-color: #b5b5b5;
+}
+
 .cardButtons {
 
     gap: 12px;
@@ -264,6 +270,14 @@ table th, table td {
     object-fit: fill;
 }
 
+.img-circle {
+
+    border-radius: 50%;
+    width: 72px;
+    height: 72px;
+    margin-bottom: 15px;
+}
+
 .rating {
 
     margin-bottom: 10px;
@@ -280,7 +294,23 @@ table th, table td {
 
     vertical-align: baseline;
 
+}
 
+.width-fixed {
+
+    max-width: 92px;
+
+}
+
+.numberCircle {
+
+    width: 48px;
+    line-height: 48px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 30px;
+    border: 1px solid cornflowerblue;
+    color: cornflowerblue;
 }
 
 .paddingNormal {
@@ -434,6 +464,7 @@ table th, table td {
     background: darkgray;
     cursor: pointer;
 }
+
 .postContainer {
 
     min-height: 10px;

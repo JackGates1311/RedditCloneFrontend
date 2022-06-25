@@ -6,6 +6,7 @@ import {HomeComponent} from "./home/home.component";
 import {CommunityViewComponent} from "./community/community-view/community-view.component";
 import {PostCreateEditComponent} from "./post/post-create-edit/post-create-edit.component";
 import {CommunityCreateEditComponent} from "./community/community-create-edit/community-create-edit.component";
+import {EditUserDataComponent} from "./auth/edit-user-data/edit-user-data.component";
 
 const routes: Routes = [
 	{
@@ -36,6 +37,11 @@ const routes: Routes = [
 
 		path: 'editCommunity/:id',
 		component: CommunityCreateEditComponent
+	},
+	{
+		path: 'accountInfo',
+		component: EditUserDataComponent
+
 	}
 ];
 
