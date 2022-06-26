@@ -3,6 +3,8 @@ import {HttpClient} from "@angular/common/http";
 import {AuthService} from "../../auth/service/auth.service";
 import {UserModel} from "./userModel";
 import {Observable} from "rxjs";
+import {EditUserDataRequestPayload} from "../../auth/edit-user-data/editUserDataRequestPayload";
+import {ChangePasswordRequestPayload} from "../../auth/change-password/changePasswordRequestPayload";
 
 @Injectable({
 
@@ -20,4 +22,16 @@ export class UserService {
             {headers: this.authService.getRequestHeaders()});
     }
 
+    updateAccountInfo(editUserDataRequestPayload: EditUserDataRequestPayload): Observable<any> {
+
+        return this.http.put('http://localhost:8080/api/auth/updateAccountInfo', editUserDataRequestPayload,
+            {headers: this.authService.getRequestHeaders(), responseType: "text"});
+    }
+
+    changePassword(changePasswordRequestPayload: ChangePasswordRequestPayload): Observable<any> {
+
+        return this.http.put('http://localhost:8080/api/auth/changePassword', changePasswordRequestPayload,
+            {headers: this.authService.getRequestHeaders()});
+
+    }
 }

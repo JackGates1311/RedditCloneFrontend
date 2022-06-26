@@ -6,6 +6,7 @@ import {UserService} from "../../shared/user/userService";
 import {ActivatedRoute, Router} from "@angular/router";
 import {RefreshService} from "../../shared/service/refreshService";
 import {Location} from "@angular/common";
+import {error} from "@angular/compiler/src/util";
 
 @Component({
   selector: 'app-edit-user-data',
@@ -25,13 +26,9 @@ export class EditUserDataComponent implements OnInit {
 
     this.editUserDataRequestPayload = {
 
-      userUsername: '',
-      userEmail: '',
-      userAvatar: '',
-      userDisplayName: '',
-      userDescription: '',
-      userKarma: 0
-
+      avatar: '',
+      displayName: '',
+      description: ''
     };
 
   }
@@ -43,6 +40,7 @@ export class EditUserDataComponent implements OnInit {
       userUsername: new FormControl(''),
       userEmail: new FormControl(''),
       userAvatar: new FormControl(''),
+      userKarma: new FormControl(''),
       userDescription: new FormControl('', Validators.required),
       userDisplayName: new FormControl('', Validators.required)
 
@@ -55,7 +53,10 @@ export class EditUserDataComponent implements OnInit {
       this.editUserDataForm.patchValue({
 
         'userUsername': this.user.username,
-        'userEmail': this.user.email
+        'userEmail': this.user.email,
+        'userKarma': this.user.karma,
+        'userDisplayName': this.user.displayName,
+        'userDescription': this.user.description
 
       });
 
@@ -65,7 +66,41 @@ export class EditUserDataComponent implements OnInit {
 
   editUserData() {
 
+    this.getDataFromFormGroup();
+
+    this.userService.updateAccountInfo(this.editUserDataRequestPayload).subscribe(data => {
+
+      this.refresh();
+
+    }, error => {
+
+      if(error.status === 403) {
+
+        alert("You don't have permissions to edit data for this user");
+
+      } else {
+
+        alert("User data hasn't been successfully saved because of database error");
+
+      }
+
+    });
+
 
   }
 
+  private getDataFromFormGroup() {
+
+    this.editUserDataRequestPayload.avatar = "",
+    this.editUserDataRequestPayload.displayName = this.editUserDataForm.get('userDisplayName').value;
+    this.editUserDataRequestPayload.description = this.editUserDataForm.get('userDescription').value;
+
+  }
+
+  private refresh() {
+
+    this.refreshService.setRefresh(true);
+    this._location.back();
+
+  }
 }

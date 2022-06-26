@@ -1,10 +1,6 @@
 export interface EditUserDataRequestPayload {
 
-    userUsername: string;
-    userEmail: string;
-    userAvatar: string;
-    userDisplayName: string;
-    userDescription: string;
-    userKarma: number;
-
+    avatar: string;
+    displayName: string;
+    description: string;
 }

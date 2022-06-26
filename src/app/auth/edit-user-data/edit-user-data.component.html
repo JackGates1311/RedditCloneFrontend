@@ -64,8 +64,17 @@
 
                         <label for="userDisplayName">Display name:</label>
 
-                        <input class="form-control" type="text" name="userDisplayName" id="userDisplayName"
-                               [formControlName]="'userDisplayName'">
+                        <input [ngClass]="[!editUserDataForm.get('userDisplayName').valid &&
+                        editUserDataForm.get('userDisplayName').touched ? 'form-control is-invalid':'form-control']"
+                               type="text" [formControlName]="'userDisplayName'" name="userDisplayName"
+                               id="userDisplayName" placeholder="Display name">
+
+                        <div *ngIf="!editUserDataForm.get('userDisplayName').valid &&
+                            editUserDataForm.get('userDisplayName').touched" id="userDisplayNameFeedback" class="invalid-feedback">
+
+                            Please provide a valid display name
+
+                        </div>
 
                     </div>
 
@@ -77,9 +86,18 @@
 
                         <label for="userDescription">Description:</label>
 
-                        <textarea class="form-control"
+                        <textarea [ngClass]="[!editUserDataForm.get('userDescription').valid &&
+                        editUserDataForm.get('userDescription').touched ? 'form-control is-invalid':'form-control']"
                                   [formControlName]="'userDescription'" id="userDescription" name="userDescription"
-                                  rows="4"></textarea>
+                                  rows="5"></textarea>
+
+                        <div *ngIf="!editUserDataForm.get('userDescription').valid &&
+                                editUserDataForm.get('userDescription').touched"
+                             id="userDescriptionFeedback" class="invalid-feedback">
+
+                            Please provide a valid description
+
+                        </div>
 
                     </div>
 
@@ -89,7 +107,10 @@
 
                     <div class="form-group col-lg-4">
 
-                        <a class="form-control btn btn-primary marginTopDefault">Change password</a>
+                        <app-change-password></app-change-password>
+
+                        <a class="form-control btn btn-primary marginTopDefault" data-toggle="modal"
+                            data-target="#btnChangePassword">Change password</a>
 
                     </div>
 
@@ -101,7 +122,8 @@
 
                     <div class="form-group col-lg-4">
 
-                        <a class="form-control btn btn-primary marginTopDefault">Save changes</a>
+                        <input class="btn btn-primary marginTopDefault w-100" id="btnSaveChanges" type="submit"
+                               [disabled]="editUserDataForm.invalid" value="Save changes">
 
                     </div>
 
