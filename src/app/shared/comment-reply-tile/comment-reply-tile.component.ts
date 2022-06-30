@@ -3,13 +3,13 @@ import {AuthService} from "../../auth/service/auth.service";
 import {LocalStorageService} from "ngx-webstorage";
 
 @Component({
-  selector: 'app-comment-tile',
-  templateUrl: './comment-tile.component.html',
-  styleUrls: ['./comment-tile.component.scss']
+  selector: 'app-comment-reply-tile',
+  templateUrl: './comment-reply-tile.component.html',
+  styleUrls: ['./comment-reply-tile.component.scss']
 })
-export class CommentTileComponent implements OnInit {
+export class CommentReplyTileComponent implements OnInit {
 
-  @Input() comments;
+  @Input() commentReplies;
 
   constructor(public authService: AuthService, public localStorage: LocalStorageService) { }
 
@@ -17,6 +17,7 @@ export class CommentTileComponent implements OnInit {
   }
 
   deleteComment(commentId: any) {
-    
+
   }
+
 }

@@ -31,4 +31,5 @@ export class ReactionService {
         return this.http.get<Array<ReactionModel>>('http://localhost:8080/api/reactions',
             {headers: this.authService.getRequestHeaders()});
     }
+
 }

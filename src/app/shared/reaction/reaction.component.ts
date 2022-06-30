@@ -30,6 +30,16 @@ export class ReactionComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.refreshService.getRefresh().subscribe((value: boolean) => {
+
+      if(value) {
+
+        this.getReactionsByUsername();
+
+      }
+
+    });
+
   }
 
   vote(reactionType: string, postId: number) {
@@ -57,7 +67,7 @@ export class ReactionComponent implements OnInit {
 
   }
 
-  setFound(foundState: boolean) {
+  public setFound(foundState: boolean) {
 
     this.isFound = foundState;
 

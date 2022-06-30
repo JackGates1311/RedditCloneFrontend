@@ -7,6 +7,7 @@ import {CommunityViewComponent} from "./community/community-view/community-view.
 import {PostCreateEditComponent} from "./post/post-create-edit/post-create-edit.component";
 import {CommunityCreateEditComponent} from "./community/community-create-edit/community-create-edit.component";
 import {EditUserDataComponent} from "./auth/edit-user-data/edit-user-data.component";
+import {PostViewComponent} from "./post/post-view/post-view.component";
 
 const routes: Routes = [
 	{
@@ -42,6 +43,10 @@ const routes: Routes = [
 		path: 'accountInfo',
 		component: EditUserDataComponent
 
+	},
+	{
+		path: 'postDetails/:id',
+		component: PostViewComponent
 	}
 ];
 

@@ -1,12 +1,14 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {PostService} from "../post/postService";
 import {PostModel} from "../post/postModel";
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {CommunityService} from "../community/communityService";
-import {Subscription} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 import {AuthService} from "../../auth/service/auth.service";
 import {RefreshService} from "../service/refreshService";
 import {LocalStorageService} from "ngx-webstorage";
+import {ReactionComponent} from "../reaction/reaction.component";
+import {ReactionService} from "../reaction/reactionService";
 
 @Component({
   selector: 'app-post-tile',
@@ -16,70 +18,38 @@ import {LocalStorageService} from "ngx-webstorage";
 
 export class PostTileComponent implements OnInit {
 
-  posts: Array<PostModel> = [];
+  @Input() post;
 
-  communityName: string = this.route.snapshot.paramMap.get('name');
+  postId: String = this.route.snapshot.paramMap.get('id');
 
-  constructor(private route: ActivatedRoute, private postService: PostService, public authService: AuthService,
-              private refreshService: RefreshService, public localStorage: LocalStorageService) {
+  constructor(private route: ActivatedRoute, public authService: AuthService, private postService: PostService,
+              private refreshService: RefreshService, public localStorage: LocalStorageService,
+              public reactionService: ReactionService) {
 
-    if(this.communityName == null){
-
-      this.getAllPosts();
-
-    } else {
-
-      this.getPostsByCommunityName();
-
-    }
+    this.getPostById(this.postId);
 
   }
 
   ngOnInit(): void {
 
-    if(this.communityName == null) {
+    this.refreshService.getRefresh().subscribe((value: boolean) => {
 
-      this.refreshService.getRefresh().subscribe((value: boolean) => {
+      if(value) {
 
-        if(value) {
+        this.getPostById(this.postId);
 
-          this.getAllPosts();
-
-        }
-
-      });
-
-    } else {
-
-      this.refreshService.getRefresh().subscribe((value: boolean) => {
-
-        if(value) {
-
-          this.getPostsByCommunityName();
-
-        }
-
-      });
-
-    }
-
-  }
-
-  getAllPosts() {
-
-    this.postService.getAllPosts().subscribe(post => {
-
-      this.posts = post;
+      }
 
     });
 
   }
 
-  getPostsByCommunityName() {
 
-    this.postService.getPostsByCommunityName(this.communityName).subscribe(post => {
+  getPostById(postId): any {
 
-      this.posts = post;
+    return this.postService.getPostById(postId).subscribe(post => {
+
+      this.post = post;
 
     });
 
@@ -89,11 +59,9 @@ export class PostTileComponent implements OnInit {
 
     this.postService.deletePostById(postId).subscribe(post => {
 
-      this.posts = post;
-
       this.refresh();
 
-    })
+    });
 
   }
 

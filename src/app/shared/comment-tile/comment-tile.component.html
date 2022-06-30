@@ -1,1 +1,70 @@
-<p>comment-tile works!</p>
+<div style="padding-left: 2%; padding-right: 2%;">
+    <div class="card postContainer w-100" *ngFor="let comment of comments">
+
+        <div class="card-header hover-effect dirty-white">
+
+            <div class="inlineFlex w-100">
+
+                <div class="inlineFlex gapSmall postHeader pointerCursor w-60">
+
+                    <span class="material-icons">account_circle</span>
+                    <a id="communityName">{{comment.username}}</a>
+
+                </div>
+
+                <div class="inlineFlex gapSmall pointerCursor w-40 alignRight">
+
+                    <div class="date-text">
+                        {{comment.timestamp | date:'dd.MM.yyyy. HH:mm'}} </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-lg-12 com-md-12 col-sm-12 col-xs-12 mb-12">
+
+                    <div class="inlineFlex gapNormal w-75">
+
+                        <p class="card-text">{{comment.text}}</p>
+
+                    </div>
+
+                    <div class="inlineFlex gapNormal pointerCursor alignRight w-25">
+
+                        <span *ngIf="authService.getJwtToken() != null && localStorage.retrieve('username') == comment.username"
+                              class="material-icons" [routerLink]="['/editComment', comment.commentId]">edit</span>
+
+                        <span *ngIf="authService.getJwtToken() != null && localStorage.retrieve('username') == comment.username"
+                              class="material-icons" (click)="deleteComment(comment.commentId)">delete</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-12 com-md-12 col-sm-12 col-xs-12 mb-12">
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Comment replies here !-->
+
+        <app-comment-reply-tile [commentReplies]="comment.replies" *ngIf="comment.replies != null"></app-comment-reply-tile>
+
+        <!--!-->
+
+    </div>
+
+</div>

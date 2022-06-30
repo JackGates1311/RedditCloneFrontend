@@ -95,6 +95,12 @@ table th, table td {
     width: 90%;
 }
 
+.min-w-100 {
+
+    min-width: 100%;
+
+}
+
 .black {
 
     color: black;
@@ -403,6 +409,18 @@ table th, table td {
     margin-top: 15px;
 }
 
+.paddingHorizontalDefault {
+
+    /*padding-left: 2%;
+    padding-right: 2%; */
+    padding-top: 5px;
+}
+
+.marginTopBig {
+
+    margin-top: 6vh;
+}
+
 .marginRightDefault {
 
     margin-right: 15px;
@@ -472,4 +490,15 @@ table th, table td {
     margin-bottom: 25px;
 }
 
+#commentList {
+
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 0;
+}
+
+#postCommentButton {
+
+    margin-right: 25px;
+}
 /* NEW */

@@ -1,0 +1,73 @@
+<div class="paddingHorizontalDefault">
+
+    <div style="padding-left: 2%; padding-right: 2%;">
+    <div *ngFor="let commentReply of commentReplies;">
+
+        <div class="card postContainer w-100">
+
+            <div class="card-header hover-effect dirty-white">
+
+                <div class="inlineFlex w-100">
+
+                    <div class="inlineFlex gapSmall postHeader pointerCursor w-60">
+
+                        <span class="material-icons">account_circle</span>
+                        <a id="communityName">{{commentReply.username}}</a>
+
+                    </div>
+
+                    <div class="inlineFlex gapSmall pointerCursor w-40 alignRight">
+
+                        <div class="date-text">{{commentReply.timestamp | date:'dd.MM.yyyy. HH:mm'}} </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="row">
+
+                    <div class="col-lg-12 com-md-12 col-sm-12 col-xs-12 mb-12">
+
+                        <div class="inlineFlex gapNormal pointerCursor w-75">
+
+                            <p class="card-text">{{commentReply.text}}</p>
+
+                        </div>
+
+                        <div class="inlineFlex gapNormal pointerCursor alignRight w-25">
+
+                    <span *ngIf="authService.getJwtToken() != null && localStorage.retrieve('username') == commentReply.username"
+                          class="material-icons" [routerLink]="['/editComment', commentReply.commentId]">edit</span>
+
+                            <span *ngIf="authService.getJwtToken() != null && localStorage.retrieve('username') == commentReply.username"
+                                  class="material-icons" (click)="deleteComment(commentReply.commentId)">delete</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-lg-12 com-md-12 col-sm-12 col-xs-12 mb-12">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <app-comment-tile [comments]="commentReply.replies" *ngIf="commentReply.replies != null"></app-comment-tile>
+
+        </div>
+
+
+    </div>
+    </div>
+
+</div>

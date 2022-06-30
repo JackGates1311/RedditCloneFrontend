@@ -42,10 +42,10 @@ export class PostService {
             {headers: this.authService.getRequestHeaders()});
     }
 
-    deletePostById(postId: number): Observable<any> {
+    deletePostById(postId: number): Observable<ArrayBuffer> {
 
-        return this.http.delete<any>('http://localhost:8080/api/posts/' + postId,
-            {headers: this.authService.getRequestHeaders()});
+        return this.http.delete<ArrayBuffer>('http://localhost:8080/api/posts/' + postId,
+            {headers: this.authService.getRequestHeaders(), observe: 'body', responseType: 'text' as 'json'});
 
     }
 
