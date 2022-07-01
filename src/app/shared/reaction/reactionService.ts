@@ -16,12 +16,13 @@ export class ReactionService {
 
     }
 
-    sendReaction(reactionType: string, postId: number): Observable<any> {
+    sendReaction(reactionType: string, postId: number, commentId: number): Observable<any> {
 
         /*this.reactionRequestPayload.reactionType = reactionType;
         this.reactionRequestPayload.postId = postId;*/
 
-        return this.http.post('http://localhost:8080/api/reactions', {reactionType: reactionType, postId: postId},
+        return this.http.post('http://localhost:8080/api/reactions', {reactionType: reactionType,
+                postId: postId, commentId: commentId},
             {headers: this.authService.getRequestHeaders(), responseType: "text"})
 
     }

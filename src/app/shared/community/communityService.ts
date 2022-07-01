@@ -6,6 +6,7 @@ import {
     CreateEditCommunityRequestPayload
 } from "../../community/community-create-edit/createEditCommunityRequestPayload";
 import {AuthService} from "../../auth/service/auth.service";
+import {CommunitySuspendRequestPayload} from "../../community/community-suspend/communitySuspendRequestPayload";
 
 @Injectable({
 
@@ -45,6 +46,14 @@ export class CommunityService {
 
         return this.http.put<any>('http://localhost:8080/api/communities/' + communityId,
             createEditCommunityRequestPayload, {headers: this.authService.getRequestHeaders()});
+
+    }
+
+    suspendCommunity(communitySuspendRequestPayload: CommunitySuspendRequestPayload, communityId: string):
+        Observable<any> {
+
+        return this.http.put<any>('http://localhost:8080/api/communities/suspend/' + communityId,
+           communitySuspendRequestPayload, {headers: this.authService.getRequestHeaders()});
 
     }
 }

@@ -10,9 +10,14 @@ import {LocalStorageService} from "ngx-webstorage";
   templateUrl: './reaction.component.html',
   styleUrls: ['./reaction.component.scss']
 })
+
 export class ReactionComponent implements OnInit {
 
   @Input() post;
+
+  @Input() comment;
+
+  @Input() reactionForComment: boolean;
 
   reactions: Array<ReactionModel> = [];
   username: string;
@@ -42,9 +47,9 @@ export class ReactionComponent implements OnInit {
 
   }
 
-  vote(reactionType: string, postId: number) {
+  vote(reactionType: string, postId: number, commentId: number) {
 
-    this.reactionService.sendReaction(reactionType, postId).subscribe(data => {
+    this.reactionService.sendReaction(reactionType, postId, commentId).subscribe(data => {
 
       this.refresh();
 

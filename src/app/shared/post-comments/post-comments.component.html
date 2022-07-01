@@ -1,9 +1,9 @@
 <div class="col-lg-12 com-md-12 col-sm-12 col-xs-12 mb-12" id="commentList">
 
-    <form class="inlineFlex gapNormal pointerCursor w-100" id="postComments"
+    <form [formGroup]="commentForm" class="inlineFlex gapNormal pointerCursor w-100"
           style="padding-left: 2%; padding-right: 2%;">
 
-        <select class="form-control textAlignCenter w-25" id="flairs" name="flairs">
+        <select class="form-control textAlignCenter w-25">
 
             <option value="" hidden></option>
             <option value="" selected>Sort by newest</option>
@@ -11,9 +11,12 @@
         </select>
 
         <input class="form-control" type="text" name="commentContent" id="commentContent"
-               placeholder="Enter comment content">
+               placeholder="Enter comment content" [hidden]="authService.getJwtToken() == null"
+               [formControlName]="'text'">
 
-        <span class="material-icons marginTopSmallDefault" id="postCommentButton">reply</span>
+        <span class="material-icons marginTopSmallDefault" id="postCommentButton" type="submit"
+              [hidden]="authService.getJwtToken() == null"
+              (click)="postComment()">reply</span>
 
     </form>
 

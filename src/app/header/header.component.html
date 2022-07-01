@@ -34,10 +34,10 @@
 
                     </a>
 
-                    <a href="/manageUsers" *ngIf="authService.getJwtToken() != null"
-                       class="nav-item nav-link d-none d-lg-block">
+                    <a *ngIf="localStorage.retrieve('role') === '{authority=ADMINISTRATOR}'" data-toggle="modal"
+                       data-target="#btnSuspendCommunity" class="nav-item nav-link d-none d-lg-block">
 
-                        <span class="material-icons">group</span>
+                        <span class="material-icons">group_remove</span>
 
                     </a>
 
@@ -96,13 +96,13 @@
 
                     </a>
 
-                    <a href="/manageUsers" *ngIf="authService.getJwtToken() != null"
-                       class="nav-item nav-link d-lg-none">
+                    <a *ngIf="localStorage.retrieve('role') === '{authority=ADMINISTRATOR}'"
+                       class="nav-item nav-link d-lg-none" data-toggle="modal" data-target="#btnSuspendCommunity">
 
                         <div class="inlineFlexNav hover-effect gapNormal">
 
-                            <span class="material-icons">group</span>
-                            Manage users
+                            <span class="material-icons">group_remove</span>
+                            Suspend community
 
                         </div>
 
@@ -166,5 +166,6 @@
     </nav>
 
     <app-login></app-login>
+    <app-community-suspend></app-community-suspend>
 
 </header>

@@ -2,17 +2,21 @@
 
     <div *ngFor="let reaction of reactions">
 
-        <div *ngIf="post.postId === reaction.postId && username === reaction.username && reaction.reactionType === 'DOWNVOTE'">
+        <!-- for posts !-->
+
+        <div *ngIf="reactionForComment == false && post.postId === reaction.postId && username === reaction.username &&
+            reaction.reactionType === 'DOWNVOTE'">
 
             <div class="inlineFlex gapNormal pointerCursor alignRight w-100">
 
                 <div [innerHtml]="setFound(true)" hidden></div>
 
-                <span class="material-icons material-icons-checked" (click)="vote('DOWNVOTE', post.postId)">south</span>
+                <span class="material-icons material-icons-checked" (click)="vote('DOWNVOTE', post.postId,
+                null)">south</span>
 
                 <div> {{post.reactionCount}} </div>
 
-                <span class="material-icons" (click)="vote('UPVOTE', post.postId)">north</span>
+                <span class="material-icons" (click)="vote('UPVOTE', post.postId, null)">north</span>
 
                 <span class="material-icons">report</span>
 
@@ -20,38 +24,104 @@
 
         </div>
 
-        <div *ngIf="post.postId === reaction.postId && username === reaction.username && reaction.reactionType === 'UPVOTE'">
+        <div *ngIf="reactionForComment == false && post.postId === reaction.postId && username === reaction.username &&
+            reaction.reactionType === 'UPVOTE'">
 
             <div class="inlineFlex gapNormal pointerCursor alignRight w-100">
 
                 <div [innerHtml]="setFound(true)" hidden></div>
 
-                <span class="material-icons" (click)="vote('DOWNVOTE', post.postId)">south</span>
+                <span class="material-icons" (click)="vote('DOWNVOTE', post.postId, null)">south</span>
 
                 <div> {{post.reactionCount}} </div>
 
-                <span class="material-icons material-icons-checked" (click)="vote('UPVOTE', post.postId)">
+                <span class="material-icons material-icons-checked"
+                      (click)="vote('UPVOTE', post.postId, null)">north</span>
+
+                <span class="material-icons">report</span>
+
+
+            </div>
+
+        </div>
+
+        <div *ngIf="reactionForComment == false && post.postId === reaction.postId && username === reaction.username &&
+            reaction.reactionType !== 'UPVOTE' && reaction.reactionType !== 'DOWNVOTE'">
+
+            <div class="inlineFlex gapNormal pointerCursor alignRight w-100">
+
+                <div [innerHtml]="setFound(true)" hidden></div>
+
+                <span class="material-icons" (click)="vote('DOWNVOTE', post.postId, null)">
+                    south</span>
+
+                <div> {{post.reactionCount}} </div>
+
+                <span class="material-icons" (click)="vote('UPVOTE', post.postId, null)">
                     north</span>
 
                 <span class="material-icons">report</span>
 
-
             </div>
 
         </div>
 
-        <div *ngIf="post.postId === reaction.postId && username === reaction.username && reaction.reactionType !== 'UPVOTE'
-            && reaction.reactionType !== 'DOWNVOTE'">
+        <!-- for comments !-->
+
+        <div *ngIf="reactionForComment && comment.commentId === reaction.commentId && username === reaction.username &&
+            reaction.reactionType === 'DOWNVOTE'">
 
             <div class="inlineFlex gapNormal pointerCursor alignRight w-100">
 
                 <div [innerHtml]="setFound(true)" hidden></div>
 
-                <span class="material-icons" (click)="vote('DOWNVOTE', post.postId)">south</span>
+                <span class="material-icons material-icons-checked" (click)="vote('DOWNVOTE', null, comment.commentId)">south</span>
 
-                <div> {{post.reactionCount}} </div>
+                <div> {{comment.reactionCount}} </div>
 
-                <span class="material-icons" (click)="vote('UPVOTE', post.postId)">north</span>
+                <span class="material-icons" (click)="vote('UPVOTE', null, comment.commentId)">north</span>
+
+                <span class="material-icons">report</span>
+
+            </div>
+
+        </div>
+
+        <div *ngIf="reactionForComment && comment.commentId === reaction.commentId && username === reaction.username &&
+            reaction.reactionType === 'UPVOTE'">
+
+            <div class="inlineFlex gapNormal pointerCursor alignRight w-100">
+
+                <div [innerHtml]="setFound(true)" hidden></div>
+
+                <span class="material-icons" (click)="vote('DOWNVOTE', null, comment.commentId)">
+                    south</span>
+
+                <div> {{comment.reactionCount}} </div>
+
+                <span class="material-icons material-icons-checked" (click)="vote('UPVOTE', null,
+                    comment.commentId)">north</span>
+
+                <span class="material-icons">report</span>
+
+            </div>
+
+        </div>
+
+        <div *ngIf="reactionForComment && comment.commentId === reaction.commentId && username === reaction.username &&
+            reaction.reactionType !== 'UPVOTE' && reaction.reactionType !== 'DOWNVOTE'">
+
+            <div class="inlineFlex gapNormal pointerCursor alignRight w-100">
+
+                <div [innerHtml]="setFound(true)" hidden></div>
+
+                <span class="material-icons" (click)="vote('DOWNVOTE', null, comment.commentId)">
+                    south</span>
+
+                <div> {{comment.reactionCount}} </div>
+
+                <span class="material-icons" (click)="vote('UPVOTE', null, comment.commentId)">
+                    north</span>
 
                 <span class="material-icons">report</span>
 
@@ -63,13 +133,30 @@
 
     <div *ngIf="isFound == false">
 
-        <div class="inlineFlex gapNormal pointerCursor alignRight w-100">
+        <!-- for posts !-->
 
-            <span class="material-icons" (click)="vote('DOWNVOTE', post.postId)">south</span>
+        <div *ngIf="reactionForComment == false" class="inlineFlex gapNormal pointerCursor alignRight w-100">
+
+            <span class="material-icons" (click)="vote('DOWNVOTE', post.postId, null)">south</span>
 
             <div> {{post.reactionCount}} </div>
 
-            <span class="material-icons" (click)="vote('UPVOTE', post.postId)">north</span>
+            <span class="material-icons" (click)="vote('UPVOTE', post.postId, null)">north</span>
+
+            <span class="material-icons gapReverse">report</span>
+
+        </div>
+
+        <!-- for comments !-->
+
+        <div *ngIf="reactionForComment" class="inlineFlex gapNormal pointerCursor alignRight w-100">
+
+            <span class="material-icons" (click)="vote('DOWNVOTE', null, comment.commentId)">
+                south</span>
+
+            <div> {{comment.reactionCount}} </div>
+
+            <span class="material-icons" (click)="vote('UPVOTE', null, comment.commentId)">north</span>
 
             <span class="material-icons gapReverse">report</span>
 

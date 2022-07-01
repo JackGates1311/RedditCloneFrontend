@@ -61,8 +61,18 @@ export class PostTileComponent implements OnInit {
 
       this.refresh();
 
-    });
+    }, error => {
 
+      if (error.status === 403) {
+
+        alert("To delete post, you must be logged in first");
+
+      } else {
+
+        alert("Error while deleting post because of database error");
+      }
+
+    });
   }
 
   public refresh() {

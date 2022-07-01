@@ -40,8 +40,14 @@
 
                         <div class="inlineFlex gapNormal pointerCursor alignRight w-25">
 
-                    <span *ngIf="authService.getJwtToken() != null && localStorage.retrieve('username') == commentReply.username"
-                          class="material-icons" [routerLink]="['/editComment', commentReply.commentId]">edit</span>
+                            <app-comment-create-edit [commentId]="commentReply.commentId" [postId]="commentReply.postId"
+                                                     [repliedToCommentId]="commentReply.commentId">
+                            </app-comment-create-edit>
+
+                            <span *ngIf="authService.getJwtToken() != null &&
+                                localStorage.retrieve('username') == commentReply.username"
+                                  class="material-icons" data-toggle="modal"
+                                  [attr.data-target]="'#btnEditReply' + commentReply.commentId">edit</span>
 
                             <span *ngIf="authService.getJwtToken() != null && localStorage.retrieve('username') == commentReply.username"
                                   class="material-icons" (click)="deleteComment(commentReply.commentId)">delete</span>
@@ -55,6 +61,20 @@
                 <div class="row">
 
                     <div class="col-lg-12 com-md-12 col-sm-12 col-xs-12 mb-12">
+
+                        <app-comment-create-edit [commentId]="null" [postId]="commentReply.postId"
+                                                 [repliedToCommentId]="commentReply.commentId"></app-comment-create-edit>
+
+                        <div class="inlineFlex gapNormal pointerCursor paddingPost w-50" data-toggle="modal"
+                             [attr.data-target]="'#btnReply' + commentReply.commentId">
+
+                            <span class="material-icons">reply</span>
+                            <div class="commentCounter">Reply</div>
+
+                        </div>
+
+                        <app-reaction *ngIf="authService.getJwtToken() != null" [post]="null" [comment]="commentReply"
+                                      [reactionForComment] = "true"></app-reaction>
 
                     </div>
 

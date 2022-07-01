@@ -184,7 +184,7 @@ table th, table td {
     color: cornflowerblue;
 }
 
-#postComments:hover #commentCounter {
+#postComments:hover .commentCounter {
 
     color: cornflowerblue;
 }

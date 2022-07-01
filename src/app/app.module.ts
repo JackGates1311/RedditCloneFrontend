@@ -26,6 +26,8 @@ import { ChangePasswordComponent } from './auth/change-password/change-password.
 import { EditUserDataComponent } from './auth/edit-user-data/edit-user-data.component';
 import { PostViewComponent } from './post/post-view/post-view.component';
 import { CommentReplyTileComponent } from './shared/comment-reply-tile/comment-reply-tile.component';
+import { CommentCreateEditComponent } from './comment/comment-create-edit/comment-create-edit.component';
+import { CommunitySuspendComponent } from './community/community-suspend/community-suspend.component';
 
 
 @NgModule({
@@ -48,8 +50,10 @@ import { CommentReplyTileComponent } from './shared/comment-reply-tile/comment-r
   		CommunityCreateEditComponent,
     	ChangePasswordComponent,
     	EditUserDataComponent,
-     PostViewComponent,
-     CommentReplyTileComponent,
+     	PostViewComponent,
+     	CommentReplyTileComponent,
+     	CommentCreateEditComponent,
+      CommunitySuspendComponent,
 	],
 	imports: [
 		BrowserModule,

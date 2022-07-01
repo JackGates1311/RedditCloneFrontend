@@ -8,5 +8,6 @@ export class PostModel {
     title: string;
     username: string;
     reactionCount: number;
+    commentCount: number;
 
 }
