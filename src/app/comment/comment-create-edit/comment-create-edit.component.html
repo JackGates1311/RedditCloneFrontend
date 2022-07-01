@@ -1,0 +1,46 @@
+<div class="modal fade" [attr.id]="commentId === null ? 'btnReply' + repliedToCommentId :
+    'btnEditReply' + repliedToCommentId" tabindex="-1" role="dialog">
+
+    <div class="modal-dialog modal-dialog-centered" role="document">
+
+        <div class="modal-content">
+
+            <div class="modal-header text-center">
+
+                <h4 class="modal-title w-100" *ngIf="commentId === null">Reply to comment</h4>
+                <h4 class="modal-title w-100" *ngIf="commentId != null">Edit comment</h4>
+
+            </div>
+
+            <div class="modal-body">
+
+                <form [formGroup]="commentForm" (ngSubmit)="commentId == null ? postComment() : editComment()">
+
+                    <label for="text">Comment content:</label>
+
+                    <input [ngClass]="[!commentForm.get('text').valid &&
+                    commentForm.get('text').touched ?
+                       'form-control is-invalid':'form-control']" type="text" name="text" id="text"
+                           placeholder="Comment content" [formControlName]="'text'">
+
+                    <div  id="usernameFeedback" class="invalid-feedback"
+                          *ngIf="!commentForm.get('text').valid &&
+                          commentForm.get('text').touched">
+
+                        Please provide a valid reply comment
+
+                    </div>
+
+                    <input class="btn btn-primary btn-sm marginTopDefault" type="submit"
+                           [value]="commentId === null ? 'Reply to comment' : 'Save changes'"
+                           [disabled]="commentForm.invalid">
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,66 @@
+<div class="modal fade" id="btnSuspendCommunity" tabindex="-1" role="dialog">
+
+    <div class="modal-dialog modal-dialog-centered" role="document">
+
+        <div class="modal-content">
+
+            <div class="modal-header text-center">
+
+                <h4 class="modal-title w-100">Suspend community</h4>
+
+            </div>
+
+            <div class="modal-body">
+
+                <form [formGroup]="suspendCommunityForm" (ngSubmit)="suspendCommunity()">
+
+                    <label for="communityId">Community:</label>
+
+                    <select [ngClass]="[!suspendCommunityForm.get('communityId').valid
+                    && suspendCommunityForm.get('communityId').touched ? 'form-control is-invalid':'form-control']"
+                            id="communityId" name="communityId" [formControlName]="'communityId'">
+
+                        <option value="" hidden></option>
+
+                        <option *ngFor="let community of communities" value="{{community.communityId}}">
+                            {{community.name}}</option>
+
+                    </select>
+
+                    <div *ngIf="!suspendCommunityForm.get('communityId').valid &&
+                         suspendCommunityForm.get('communityId').touched" id="communityIdFeedback"
+                         class="invalid-feedback">
+
+                        Please select a community
+
+                    </div>
+
+                    <label for="suspendedReason">Reason for suspending:</label>
+
+                    <textarea [ngClass]="[!suspendCommunityForm.get('suspendedReason').valid &&
+                            suspendCommunityForm.get('suspendedReason').touched ?
+                            'form-control is-invalid':'form-control']" [formControlName]="'suspendedReason'"
+                              id="suspendedReason" name="suspendedReason"
+                              rows="4"></textarea>
+
+                    <div *ngIf="!suspendCommunityForm.get('suspendedReason').valid &&
+                        suspendCommunityForm.get('suspendedReason').touched"
+                         id="suspendedReasonFeedback" class="invalid-feedback">
+
+                        Please provide a valid suspend reason
+
+                    </div>
+
+                    <input class="btn btn-primary btn-sm marginTopDefault" type="submit"
+                           value="Suspend community"
+                           [disabled]="suspendCommunityForm.invalid">
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
