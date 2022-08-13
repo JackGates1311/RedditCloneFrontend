@@ -9,6 +9,7 @@ import {RefreshService} from "../service/refreshService";
 import {LocalStorageService} from "ngx-webstorage";
 import {ReactionComponent} from "../reaction/reaction.component";
 import {ReactionService} from "../reaction/reactionService";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-post-tile',
@@ -20,7 +21,9 @@ export class PostTileComponent implements OnInit {
 
   @Input() post;
 
-  postId: String = this.route.snapshot.paramMap.get('id');
+  postId: string = this.route.snapshot.paramMap.get('id');
+  apiURL: string = environment.apiURL;
+  imageURL: string = environment.imageURL;
 
   constructor(private route: ActivatedRoute, public authService: AuthService, private postService: PostService,
               private refreshService: RefreshService, public localStorage: LocalStorageService,

@@ -6,6 +6,7 @@ import {LoginRequestPayload} from "../login/loginRequestPayload";
 import {LoginResponsePayload} from "../login/loginResponsePayload";
 import {map} from "rxjs/operators";
 import {LocalStorageService} from 'ngx-webstorage';
+import {environment} from "../../../environments/environment";
 
 @Injectable({
 
@@ -14,6 +15,8 @@ import {LocalStorageService} from 'ngx-webstorage';
 
 export class AuthService {
 
+  apiURL: string = environment.apiURL;
+
   @Output() loggedIn: EventEmitter<boolean> = new EventEmitter();
 
   constructor(private httpClient: HttpClient, private localStorage: LocalStorageService) {
@@ -21,13 +24,13 @@ export class AuthService {
 
   register(registerRequestPayload: RegisterRequestPayload): Observable<any> {
 
-    return this.httpClient.post('http://localhost:8080/api/auth/register', registerRequestPayload,
+    return this.httpClient.post(this.apiURL + '/api/auth/register', registerRequestPayload,
         {responseType: 'text'});
   }
 
   login(loginRequestPayload: LoginRequestPayload): Observable<boolean> {
 
-    return this.httpClient.post<LoginResponsePayload>('http://localhost:8080/api/auth/login', loginRequestPayload).pipe(
+    return this.httpClient.post<LoginResponsePayload>(this.apiURL + '/api/auth/login', loginRequestPayload).pipe(
         map(data => {
 
           this.localStorage.store('authToken', data.authToken);

@@ -7,6 +7,7 @@ import {
 } from "../../community/community-create-edit/createEditCommunityRequestPayload";
 import {AuthService} from "../../auth/service/auth.service";
 import {CommunitySuspendRequestPayload} from "../../community/community-suspend/communitySuspendRequestPayload";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
 
@@ -15,28 +16,30 @@ import {CommunitySuspendRequestPayload} from "../../community/community-suspend/
 
 export class CommunityService {
 
+    apiURL: string = environment.apiURL;
+
    constructor(private http: HttpClient, public authService: AuthService) {
    }
 
    getCommunityByName(communityName: string): Observable<CommunityModel> {
 
-      return this.http.get<CommunityModel>('http://localhost:8080/api/communities/name=' + communityName);
+      return this.http.get<CommunityModel>(this.apiURL + '/api/communities/name=' + communityName);
    }
 
     getAllCommunities(): Observable<Array<CommunityModel>> {
 
-       return this.http.get<Array<CommunityModel>>('http://localhost:8080/api/communities/getAllCommunities');
+       return this.http.get<Array<CommunityModel>>(this.apiURL + '/api/communities/getAllCommunities');
     }
 
     getCommunityById(communityId: string): Observable<CommunityModel> {
 
-        return this.http.get<CommunityModel>('http://localhost:8080/api/communities/id=' + communityId,
+        return this.http.get<CommunityModel>(this.apiURL + '/api/communities/id=' + communityId,
             {headers: this.authService.getRequestHeaders()});
     }
 
     createCommunity(createEditCommunityRequestPayload: CreateEditCommunityRequestPayload): Observable<any> {
 
-        return this.http.post('http://localhost:8080/api/communities/createCommunity',
+        return this.http.post(this.apiURL + '/api/communities/createCommunity',
             createEditCommunityRequestPayload, {headers: this.authService.getRequestHeaders(), responseType: "text"})
 
     }
@@ -44,7 +47,7 @@ export class CommunityService {
     updateCommunity(createEditCommunityRequestPayload: CreateEditCommunityRequestPayload, communityId: string):
         Observable<any> {
 
-        return this.http.put<any>('http://localhost:8080/api/communities/' + communityId,
+        return this.http.put<any>(this.apiURL + '/api/communities/' + communityId,
             createEditCommunityRequestPayload, {headers: this.authService.getRequestHeaders()});
 
     }
@@ -52,7 +55,7 @@ export class CommunityService {
     suspendCommunity(communitySuspendRequestPayload: CommunitySuspendRequestPayload, communityId: string):
         Observable<any> {
 
-        return this.http.put<any>('http://localhost:8080/api/communities/suspend/' + communityId,
+        return this.http.put<any>(this.apiURL + '/api/communities/suspend/' + communityId,
            communitySuspendRequestPayload, {headers: this.authService.getRequestHeaders()});
 
     }

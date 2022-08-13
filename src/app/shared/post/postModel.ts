@@ -9,5 +9,6 @@ export class PostModel {
     username: string;
     reactionCount: number;
     commentCount: number;
+    images: string[];
 
 }

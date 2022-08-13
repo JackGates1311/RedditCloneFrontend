@@ -91,7 +91,7 @@ export class EditUserDataComponent implements OnInit {
 
   private getDataFromFormGroup() {
 
-    this.editUserDataRequestPayload.avatar = "",
+    this.editUserDataRequestPayload.avatar = "";
     this.editUserDataRequestPayload.displayName = this.editUserDataForm.get('userDisplayName').value;
     this.editUserDataRequestPayload.description = this.editUserDataForm.get('userDescription').value;
 
