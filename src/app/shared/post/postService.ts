@@ -20,7 +20,7 @@ export class PostService {
 
     getAllPosts(): Observable<Array<PostModel>> {
 
-        return this.http.get<Array<PostModel>>(this.apiURL + '/api/posts/getAllPosts');
+        return this.http.get<Array<PostModel>>(this.apiURL + '/api/posts/getAllPosts?sortBy=hot');
     }
 
     getPostsByCommunityName(communityName): Observable<Array<PostModel>> {
