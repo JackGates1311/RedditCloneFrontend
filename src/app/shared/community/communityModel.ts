@@ -1,5 +1,4 @@
 export class CommunityModel {
-
     communityId: number;
     name: string;
     description: string;
@@ -7,5 +6,5 @@ export class CommunityModel {
     isSuspended: boolean;
     suspendedReason: string;
     numberOfPosts: number;
-
+    flairs: string[];
 }

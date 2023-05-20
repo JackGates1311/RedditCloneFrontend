@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 
 import { HeaderComponent } from './header/header.component';
 import { RegisterComponent } from './auth/register/register.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { LoginComponent } from './auth/login/login.component';
 import {LocalStorage, NgxWebstorageModule} from "ngx-webstorage";
@@ -28,6 +28,8 @@ import { PostViewComponent } from './post/post-view/post-view.component';
 import { CommentReplyTileComponent } from './shared/comment-reply-tile/comment-reply-tile.component';
 import { CommentCreateEditComponent } from './comment/comment-create-edit/comment-create-edit.component';
 import { CommunitySuspendComponent } from './community/community-suspend/community-suspend.component';
+import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
+import { ImageComponent } from './image/image.component';
 
 
 @NgModule({
@@ -54,14 +56,17 @@ import { CommunitySuspendComponent } from './community/community-suspend/communi
      	CommentReplyTileComponent,
      	CommentCreateEditComponent,
       CommunitySuspendComponent,
+      ImageComponent,
 	],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
 		ReactiveFormsModule,
 		HttpClientModule,
-		NgxWebstorageModule.forRoot()
-],
+		NgxWebstorageModule.forRoot(),
+		NgMultiSelectDropDownModule,
+		FormsModule
+	],
 	providers: [],
 	bootstrap: [AppComponent],
 })

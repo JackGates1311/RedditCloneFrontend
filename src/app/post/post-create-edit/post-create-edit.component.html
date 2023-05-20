@@ -5,7 +5,8 @@
         <label for="communityName" [hidden]="postId != null ? true : false">Community:</label>
 
         <select [ngClass]="[!createEditPostForm.get('communityName').valid && createEditPostForm.get('communityName').touched ? 'form-control is-invalid':'form-control']" id="communityName" name="communityName"
-                [formControlName]="'communityName'" [hidden]="postId != null ? true : false">
+                [formControlName]="'communityName'" [hidden]="postId != null ? true : false"
+                (change)="onCommunityChanged($event.target.value)">
 
             <option value="" hidden></option>
 
@@ -48,23 +49,32 @@
 
         </div>
 
-        <label for="flairs">Flairs:</label>
+        <label>Flairs:</label>
+        <ng-multiselect-dropdown
+                id="flairs"
+                [placeholder]="'Select flairs'"
+                [settings]="dropdownSettings"
+                [data]="dropdownList"
+                [(ngModel)]="selectedItems"
+                (onSelect)="onItemSelect($event)"
+                (onSelectAll)="onSelectAll($event)"
+                [formControlName]="'flairs'"
+        >
+        </ng-multiselect-dropdown>
 
-        <select class="form-control" id="flairs" name="flairs">
+        <label style="margin-top: 7px;" for="imagePath">Images:</label>
 
-            <option value="" hidden></option>
-
-        </select>
-
-        <label style="margin-top: 7px;" for="imagePath">Image:</label>
+        <div [hidden]="postId==null">
+            <app-image [post]="post"></app-image>
+        </div>
 
         <div class="custom-file">
 
-            <input type="file" class="custom-file-input" id="imagePath"
-                   [formControlName]="'imagePath'" name="imagePath">
+            <input type="file" class="custom-file-input" id="imagePath" (change)="onFileSelected($event)"
+                   [formControlName]="'imagePath'" name="imagePath" accept="image/*" multiple>
 
             <label class="custom-file-label" id="imageLabel" for="imagePath">
-                Select image for post
+                {{imagePathPlaceholder}}
             </label>
 
         </div>

@@ -40,6 +40,10 @@ export class AuthService {
 
           this.loggedIn.emit(true);
 
+            setTimeout(() => {
+                this.logout();
+            }, data.expiresIn);
+
           return true;
 
         }));

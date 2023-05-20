@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-12 col-md-6 col-xl-4 mb-3" *ngFor="let image of post.images; let i = index">
+        <div class="card">
+            <img class="card-img-top stretch-image" src="http://localhost:8080/api/file/{{image}}" alt="Post image">
+            <div class="d-flex justify-content-end paddingSmall w-100">
+                <span class="material-icons pointerCursor" data-toggle="modal" [attr.data-target]="'#deleteModal-' + i">delete</span>
+            </div>
+        </div>
+        <div class="modal fade" [id]="'deleteModal-' + i" tabindex="-1" role="dialog"
+             [attr.aria-labelledby]="'deleteModalLabel-' + image" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Delete image</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you really want to delete image: {{ image }}?</p>
+                        <p>Changes can't be restored after confirmation!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger"
+                                (click)="deleteImage(image, 'deleteModal-' + i)">Delete image</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

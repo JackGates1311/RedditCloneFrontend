@@ -5,5 +5,5 @@ export interface CreateEditPostRequestPayload {
     text: string;
     title: string;
     reactionCount: number;
-
+    flairs: string[];
 }

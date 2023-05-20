@@ -391,6 +391,12 @@ table th, table td {
     justify-content: end;
 }
 
+.card-img-top {
+    width: 100%;
+    height: 10vw;
+    object-fit: cover;
+}
+
 .flexCenter {
 
     display: flex;
@@ -431,6 +437,11 @@ table th, table td {
     margin-top: 5px;
 }
 
+.modal-body p {
+    word-wrap: break-word;
+}
+
+
 .navBarLogoImageSize {
 
     width: 40px;
@@ -466,6 +477,7 @@ table th, table td {
     min-height: 90vh;
     align-items: center;
 }
+
 
 #arrow-left, #arrow-right {
 

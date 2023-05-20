@@ -87,6 +87,16 @@
 
         </div>
 
+        <div class="row" *ngIf="post.flairs.length > 0">
+            <div class="col-lg-12 com-md-12 col-sm-12 col-xs-12 mb-12">
+                <div class="d-flex justify-content-end gapNormal paddingPost w-100 flex-wrap">
+                    <div *ngFor="let flair of post.flairs">
+                        <span class="badge badge-primary gap-3">{{flair}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
 
             <div class="col-lg-12 com-md-12 col-sm-12 col-xs-12 mb-12">

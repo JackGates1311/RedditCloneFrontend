@@ -10,5 +10,6 @@ export class PostModel {
     reactionCount: number;
     commentCount: number;
     images: string[];
+    flairs: string[];
 
 }
