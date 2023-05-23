@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-community-flairs-tile',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./community-flairs-tile.component.scss']
 })
 export class CommunityFlairsTileComponent implements OnInit {
+
+  @Input() community;
 
   constructor() { }
 

@@ -29,28 +29,30 @@
 
         </div>
 
-        <label for="rules">Rules:</label>
-
-        <textarea class="form-control"
-                  [formControlName]="'rules'" id="rules" name="rules"
-                  rows="4" disabled></textarea>
-
-        <div *ngIf="!createEditCommunityForm.get('rules').valid &&
-            createEditCommunityForm.get('rules').touched" id="rulesFeedback" class="invalid-feedback">
-
-            Please provide a valid rules
-
-        </div>
-
         <label for="flairs">Flairs:</label>
 
-        <select class="form-control" id="flairs" name="flairs">
+        <div class="d-flex flex-row gapNormal">
+            <div class="w-75">
+                <ng-multiselect-dropdown
+                        id="flairs"
+                        [placeholder]="'Select flairs'"
+                        [settings]="dropdownSettings"
+                        [data]="dropdownList"
+                        [(ngModel)]="selectedItems"
+                        (onSelect)="onItemSelect($event)"
+                        (onSelectAll)="onSelectAll($event)"
+                        [formControlName]="'flairs'"
+                >
+                </ng-multiselect-dropdown>
+            </div>
+            <div class="w-25">
+                <button type="button" class="btn btn-primary w-100" data-toggle="modal" data-target="#addFlairModal">
+                    Add new flair</button>
+                <app-flair (flairValue)="handleFlairValues($event)"></app-flair>
+            </div>
+        </div>
 
-            <option value="" hidden></option>
-
-        </select>
-
-        <input class="btn btn-primary btn-sm marginTopDefault" type="submit"
+        <input class="btn btn-primary btn-sm marginTopDefault pointerCursor" type="submit"
                [value]="communityId != null ? 'Save changes' : 'Create community'"
                [disabled]="createEditCommunityForm.invalid">
 

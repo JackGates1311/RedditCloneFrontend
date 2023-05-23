@@ -1,11 +1,10 @@
 <div class="card marginTopDefault">
-
     <div class="card-body">
-
         <h5 class="card-title">Community flairs:</h5>
-
-        <p class="card-text"></p>
-
+        <div class="d-flex gapNormal w-100 flex-wrap">
+            <div *ngFor="let flair of community.flairs">
+                <h4><span class="badge badge-primary gap-3">{{flair}}</span></h4>
+            </div>
+        </div>
     </div>
-
 </div>

@@ -81,14 +81,6 @@ export class PostCreateEditComponent implements OnInit {
   }
 
   fillDropdownMenu() {
-
-    /*this.flairService.getFlairs().pipe(
-        tap((flairModels: FlairModel[]) => {
-          console.log(flairModels); // Inspect the flairModels array
-          this.dropdownList = flairModels;
-        })
-    ).subscribe();*/ // THIS method works!!! DO NOT DELETE IT
-
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'flairId',

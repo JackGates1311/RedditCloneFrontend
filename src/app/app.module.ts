@@ -30,6 +30,7 @@ import { CommentCreateEditComponent } from './comment/comment-create-edit/commen
 import { CommunitySuspendComponent } from './community/community-suspend/community-suspend.component';
 import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 import { ImageComponent } from './image/image.component';
+import { FlairComponent } from './shared/flair/flair.component';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { ImageComponent } from './image/image.component';
      	CommentCreateEditComponent,
       CommunitySuspendComponent,
       ImageComponent,
+      FlairComponent,
 	],
 	imports: [
 		BrowserModule,
