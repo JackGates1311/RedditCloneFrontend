@@ -24,4 +24,9 @@ export class ImageService {
         return this.http.delete(this.apiURL + url,
             {headers: this.authService.getRequestHeaders(), responseType: "text"});
     }
+
+    updateImage(url: String, formData: FormData) {
+        return this.http.put(this.apiURL + url, formData,
+            {headers: this.authService.getRequestHeaders(), responseType: "text"});
+    }
 }

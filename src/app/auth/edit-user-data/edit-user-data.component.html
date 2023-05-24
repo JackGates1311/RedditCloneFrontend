@@ -7,24 +7,23 @@
             <div class="form-group col-md-12">
 
                 <div class="form-row">
-
-                    <div class="form-group col-lg-2 width-fixed">
-
-                        <img class="img-circle" src="assets/images/avatar.png">
-
+                    <div class="d-flex align-items-center">
+                        <div class="p-0 mr-3">
+                            <img src="{{this.user.avatar}}" alt="profile image" [formControlName]="'userAvatar'"
+                                 class="img-circle" style="width: 150px; height: 150px; object-fit: cover;" />
+                        </div>
+                        <div class="flex-grow-1 m-auto">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="imagePath"
+                                       (change)="onFileSelected($event)" [formControlName]="'imagePath'"
+                                       name="imagePath" accept="image/*">
+                                <label class="custom-file-label" id="imageLabel" for="imagePath">
+                                    {{imagePathPlaceholder}}</label>
+                            </div>
+                        </div>
+                        <button *ngIf='user.avatar !== this.defaultAvatar' class="btn btn-primary ml-3 mt-2"
+                                (click)="removeAvatar()">Set default avatar</button>
                     </div>
-
-                    <div class="form-group col-lg-5">
-
-                        <a class="form-control btn btn-primary marginTopDefault">Change image</a>
-
-                    </div>
-
-                    <div class="form-group col-lg-5">
-
-
-                    </div>
-
                 </div>
 
                 <div class="form-row">

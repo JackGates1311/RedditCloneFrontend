@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {EditUserDataRequestPayload} from "./editUserDataRequestPayload";
 import {UserModel} from "../../shared/user/userModel";
@@ -6,7 +6,7 @@ import {UserService} from "../../shared/user/userService";
 import {ActivatedRoute, Router} from "@angular/router";
 import {RefreshService} from "../../shared/service/refreshService";
 import {Location} from "@angular/common";
-import {error} from "@angular/compiler/src/util";
+import {ImageService} from "../../shared/image/imageService";
 
 @Component({
   selector: 'app-edit-user-data',
@@ -20,12 +20,14 @@ export class EditUserDataComponent implements OnInit {
 
   editUserDataForm: FormGroup;
   editUserDataRequestPayload: EditUserDataRequestPayload;
+  imagePathPlaceholder = "Change avatar";
+  defaultAvatar = "assets/images/avatar.png";
+  avatarFileName = "";
 
   constructor(private userService: UserService, private router: Router, private route: ActivatedRoute,
-              private refreshService: RefreshService, private _location: Location) {
+              private refreshService: RefreshService, private _location: Location, private imageService: ImageService) {
 
     this.editUserDataRequestPayload = {
-
       avatar: '',
       displayName: '',
       description: ''
@@ -50,16 +52,23 @@ export class EditUserDataComponent implements OnInit {
 
       this.user = user;
 
+      if(user.avatar === "" || user.avatar === null){
+        this.user.avatar = this.defaultAvatar;
+      } else {
+        this.avatarFileName = user.avatar;
+        this.user.avatar = "http://localhost:8080/api/file/" + user.avatar;
+      }
+
       this.editUserDataForm.patchValue({
 
         'userUsername': this.user.username,
         'userEmail': this.user.email,
         'userKarma': this.user.karma,
         'userDisplayName': this.user.displayName,
-        'userDescription': this.user.description
+        'userDescription': this.user.description,
+        'userAvatar': this.user.avatar
 
       });
-
     });
 
   }
@@ -68,7 +77,7 @@ export class EditUserDataComponent implements OnInit {
 
     this.getDataFromFormGroup();
 
-    this.userService.updateAccountInfo(this.editUserDataRequestPayload).subscribe(data => {
+    this.userService.updateAccountInfo(this.editUserDataRequestPayload).subscribe(() => {
 
       this.refresh();
 
@@ -100,7 +109,60 @@ export class EditUserDataComponent implements OnInit {
   private refresh() {
 
     this.refreshService.setRefresh(true);
-    this._location.back();
+    this.router.navigate([this.route.snapshot.url]);
 
+  }
+
+  onFileSelected(event) {
+    this.imagePathPlaceholder = "Uploading ...";
+
+    const formData = new FormData();
+
+    formData.append("files", event.target.files[0]);
+
+    if(this.user.avatar === this.defaultAvatar) {
+      this.imageService.uploadImage("/api/file/upload", formData).subscribe(data => {
+        let responseData = JSON.parse(data);
+        let fileNamesString = responseData.fileNames;
+        this.user.avatar = "http://localhost:8080/api/file/" + fileNamesString.slice(1, -1);
+        this.avatarFileName = fileNamesString.slice(1, -1);
+        this.imagePathPlaceholder = "Upload successful!";
+      }, error => {
+        if(error.status === 403) {
+          alert("To update your avatar, you must be logged in first");
+        } else {
+          alert("Error while updating avatar, changes will be canceled");
+        }
+      });
+    } else {
+      this.imageService.updateImage("/api/file/upload", formData).subscribe(data => {
+        let responseData = JSON.parse(data);
+        let fileNamesString = responseData.fileNames;
+        this.user.avatar = "http://localhost:8080/api/file/" + fileNamesString;
+        this.avatarFileName = fileNamesString;
+        this.imagePathPlaceholder = "Upload successful!";
+      }, error => {
+        if(error.status === 403) {
+          alert("To update your avatar, you must be logged in first");
+        } else {
+          alert("Error while updating avatar, changes will be canceled");
+        }
+      });
+    }
+
+
+  }
+
+  removeAvatar() {
+    this.imageService.deleteImage("/api/file/delete/" + this.avatarFileName).subscribe(() => {
+        this.user.avatar = this.defaultAvatar;
+      this.imagePathPlaceholder = "Change avatar";
+    }, error => {
+      if(error.status === 403) {
+        alert("You must be logged in first to do this task!");
+      } else {
+        alert("Error occurred while deleting image, please try it again later");
+      }
+    });
   }
 }
