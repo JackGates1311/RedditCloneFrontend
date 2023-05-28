@@ -20,6 +20,10 @@
 
                 <div class="navbar-nav ml-auto">
 
+                    <a routerLink="/search" class="nav-item nav-link d-none d-lg-block">
+                        <span class="material-icons" data-toggle="tooltip" title="Search">search</span>
+                    </a>
+
                     <a routerLink="/createNewPost" *ngIf="authService.getJwtToken() != null"
                        class="nav-item nav-link d-none d-lg-block">
 
@@ -37,7 +41,7 @@
                     <a *ngIf="localStorage.retrieve('role') === '{authority=ADMINISTRATOR}'" data-toggle="modal"
                        data-target="#btnSuspendCommunity" class="nav-item nav-link d-none d-lg-block">
 
-                        <span class="material-icons">group_remove</span>
+                        <span class="material-icons" data-toggle="tooltip" title="Suspend community">group_remove</span>
 
                     </a>
 
@@ -71,6 +75,17 @@
                     </a>
 
                     <!-- For mobile version of website -->
+
+                    <a href="/search" class="nav-item nav-link d-lg-none">
+
+                        <div class="inlineFlexNav hover-effect gapNormal">
+
+                            <span class="material-icons">search</span>
+                            Search
+
+                        </div>
+
+                    </a>
 
                     <a routerLink="/createNewPost" *ngIf="authService.getJwtToken() != null"
                        class="nav-item nav-link d-lg-none">

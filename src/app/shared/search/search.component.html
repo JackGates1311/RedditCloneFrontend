@@ -1,0 +1,46 @@
+<div class="container-fluid p-4">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 border-right">
+                <div class="dropdown w-100 mt-3">
+                    <button class="btn btn-primary dropdown-toggle custom-dropdown-toggle w-100" type="button" id="formTypeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{selectedForm}}
+                    </button>
+                    <div class="dropdown-menu w-100" aria-labelledby="formTypeDropdown">
+                        <a class="dropdown-item pointerCursor" (click)="selectedForm = 'Communities'">Communities</a>
+                        <a class="dropdown-item pointerCursor" (click)="selectedForm = 'Posts'">Posts</a>
+                    </div>
+
+                    <app-community-search *ngIf="selectedForm === 'Communities'"
+                                          (communitySearchResultsEmitted)="handleCommunitySearchResultsData($event)">
+                    </app-community-search>
+                    <app-post-search *ngIf="selectedForm === 'Posts'"></app-post-search>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="table-responsive mt-3">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th *ngFor="let field of headerFieldsForTable">{{ field }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of searchResults">
+                                <td *ngFor="let field of headerFields">
+                                    <ng-container *ngIf="field !== 'highlighterText'; else highlighterField">
+                                        {{ item[field] }}
+                                    </ng-container>
+                                    <ng-template #highlighterField>
+                                        <span [innerHTML]="highlightText(item[field])"></span>
+                                    </ng-template>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

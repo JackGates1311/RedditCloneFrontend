@@ -8,6 +8,7 @@ import {PostCreateEditComponent} from "./post/post-create-edit/post-create-edit.
 import {CommunityCreateEditComponent} from "./community/community-create-edit/community-create-edit.component";
 import {EditUserDataComponent} from "./auth/edit-user-data/edit-user-data.component";
 import {PostViewComponent} from "./post/post-view/post-view.component";
+import {SearchComponent} from "./shared/search/search.component";
 
 const routes: Routes = [
 	{
@@ -47,6 +48,10 @@ const routes: Routes = [
 	{
 		path: 'postDetails/:id',
 		component: PostViewComponent
+	},
+	{
+		path: 'search',
+		component: SearchComponent
 	}
 ];
 

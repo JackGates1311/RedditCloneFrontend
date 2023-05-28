@@ -31,6 +31,10 @@ import { CommunitySuspendComponent } from './community/community-suspend/communi
 import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 import { ImageComponent } from './image/image.component';
 import { FlairComponent } from './shared/flair/flair.component';
+import { ReportComponent } from './shared/report/report.component';
+import { CommunitySearchComponent } from './shared/community-search/community-search.component';
+import { PostSearchComponent } from './shared/post-search/post-search.component';
+import { SearchComponent } from './shared/search/search.component';
 
 
 @NgModule({
@@ -59,6 +63,10 @@ import { FlairComponent } from './shared/flair/flair.component';
       CommunitySuspendComponent,
       ImageComponent,
       FlairComponent,
+      ReportComponent,
+      CommunitySearchComponent,
+      PostSearchComponent,
+      SearchComponent,
 	],
 	imports: [
 		BrowserModule,

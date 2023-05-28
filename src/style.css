@@ -28,6 +28,10 @@ a:hover, a:visited, a:focus {
     text-decoration: none !important;
 }
 
+body {
+    --table-width: 100%; /* Or any value, this will change dinamically */
+}
+
 h2 {
 
     text-align: center;
@@ -69,6 +73,20 @@ table th, table td {
     text-align: center;
     vertical-align: middle !important;
 }
+
+tbody {
+    display:block;
+    max-height:550px;
+    overflow-y:auto;
+}
+
+thead, tbody tr {
+    display:table;
+    width: var(--table-width);
+    table-layout:fixed;
+    overflow-x: auto;
+}
+
 
 .w-30 {
 
@@ -403,6 +421,10 @@ table th, table td {
     justify-content: center;
 }
 
+.highlight {
+    background-color: yellow;
+}
+
 .marginsDefault {
 
     margin-left: 15px;
@@ -513,4 +535,37 @@ table th, table td {
 
     margin-right: 25px;
 }
-/* NEW */
+
+@media (max-width: 767px) {
+    .table thead,
+    .table tbody,
+    .table tr,
+    .table th,
+    .table td {
+        display: block;
+    }
+
+    .table thead {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .table tbody {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    .table tr {
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+    }
+
+    .table th,
+    .table td {
+        display: inline-block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+}

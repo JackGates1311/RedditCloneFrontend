@@ -1,0 +1,69 @@
+<div class="mt-4">
+    <form [formGroup]="communitySearchForm" (ngSubmit)="searchCommunities()">
+
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" [formControlName]="'name'">
+            <select class="form-control mt-2" [formControlName]="'nameSearchMode'">
+                <option value="standard">Standard search</option>
+                <option value="fuzzy">Fuzzy search</option>
+                <option value="phrase">Phrase search</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <input type="text" class="form-control" id="description" [formControlName]="'description'">
+            <select class="form-control mt-2" [formControlName]="'descriptionSearchMode'">
+                <option value="standard">Standard search</option>
+                <option value="fuzzy">Fuzzy search</option>
+                <option value="phrase">Phrase search</option>
+            </select>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="minPosts">Min posts:</label>
+                <input type="number" class="form-control" id="minPosts" [formControlName]="'minPosts'" min="0">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="maxPosts">Max posts:</label>
+                <input type="number" class="form-control" id="maxPosts" [formControlName]="'maxPosts'" min="0">
+            </div>
+        </div>
+
+        <div *ngIf="communitySearchForm.get('maxPosts').errors?.minMaxPosts" id="minMaxPostsFeedback"
+             class="text-danger mb-1 text-center">
+            Range between min and max posts are invalid!
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="minKarma">Min karma:</label>
+                <input type="number" class="form-control" id="minKarma" [formControlName]="'minKarma'">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="maxKarma">Max karma:</label>
+                <input type="number" class="form-control" id="maxKarma" [formControlName]="'maxKarma'">
+            </div>
+        </div>
+
+        <div *ngIf="communitySearchForm.get('maxKarma').errors?.minMaxKarma" id="minMaxKarmaFeedback"
+             class="text-danger mb-1 text-center">
+            Range between min and max karma are invalid!
+        </div>
+
+        <div class="form-group">
+            <label for="isMust">Logic operator:</label>
+            <select class="form-control" id="isMust" [formControlName]="'isMust'">
+                <option value="and">AND</option>
+                <option value="or">OR</option>
+            </select>
+        </div>
+
+        <input type="submit" class="btn btn-primary w-100" [disabled]="communitySearchForm.invalid" [value]="'Search'">
+        <input type="reset" class="btn btn-primary w-100 mt-2" [value]="'Clear'"
+               (click)="emitCommunitySearchResults(null)">
+    </form>
+</div>
+

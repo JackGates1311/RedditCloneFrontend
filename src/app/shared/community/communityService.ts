@@ -57,6 +57,9 @@ export class CommunityService {
 
         return this.http.put<any>(this.apiURL + '/api/communities/suspend/' + communityId,
            communitySuspendRequestPayload, {headers: this.authService.getRequestHeaders()});
+    }
 
+    searchCommunity(url: string): Observable<any> {
+       return this.http.get(url);
     }
 }
