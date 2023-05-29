@@ -1,5 +1,11 @@
+<div class="d-flex justify-content-center mb-5">
+    <select class="form-control textAlignCenter w-25" [(ngModel)]="selectedSortOption" (change)="onSortChange()">
+        <option value="hot">Sort by hot</option>
+        <option value="top">Sort by top</option>
+        <option value="new">Sort by new</option>
+    </select>
+</div>
+
 <div *ngFor="let post of posts">
-
     <app-post-tile [post]="post"></app-post-tile>
-
 </div>

@@ -3,11 +3,11 @@
     <form [formGroup]="commentForm" class="inlineFlex gapNormal pointerCursor w-100"
           style="padding-left: 2%; padding-right: 2%;">
 
-        <select class="form-control textAlignCenter w-25">
-
-            <option value="" hidden></option>
-            <option value="" selected>Sort by newest</option>
-
+        <select class="form-control textAlignCenter w-25" [(ngModel)]="selectedSortOption" (change)="onSortChange()"
+                [formControlName]="'sortBy'">
+            <option value="top">Sort by top</option>
+            <option value="new">Sort by new</option>
+            <option value="old">Sort by oldest</option>
         </select>
 
         <input class="form-control" type="text" name="commentContent" id="commentContent"

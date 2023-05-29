@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {CommentModel} from "../comment/commentModel";
 import {CommentService} from "../comment/commentService";
@@ -21,6 +21,7 @@ export class PostCommentsComponent implements OnInit {
   commentRequestPayload: CommentRequestPayload;
 
   postId: string = this.route.snapshot.paramMap.get('id');
+  selectedSortOption: string = "top";
 
   constructor(private route: ActivatedRoute, public commentService: CommentService,
               private refreshService: RefreshService, public authService: AuthService) {
@@ -35,7 +36,7 @@ export class PostCommentsComponent implements OnInit {
 
     if (this.postId != null) {
 
-      this.getPostComments();
+      this.getPostComments("top");
 
     }
 
@@ -45,16 +46,15 @@ export class PostCommentsComponent implements OnInit {
   ngOnInit(): void {
 
     this.commentForm = new FormGroup({
-
-      text: new FormControl('', Validators.required)
-
+      text: new FormControl('', Validators.required),
+      sortBy: new FormControl('top')
     });
 
     this.refreshService.getRefresh().subscribe((value: boolean) => {
 
       if(value) {
 
-        this.getPostComments();
+        this.getPostComments("top");
 
       }
 
@@ -62,9 +62,9 @@ export class PostCommentsComponent implements OnInit {
 
   }
 
-  private getPostComments() {
+  private getPostComments(sortBy: string) {
 
-    this.commentService.getPostComments(this.postId).subscribe(comment  => {
+    this.commentService.getPostComments(this.postId, sortBy).subscribe(comment  => {
 
       this.comments = comment;
 
@@ -82,7 +82,7 @@ export class PostCommentsComponent implements OnInit {
 
       this.getDataFromFormGroupPost();
 
-      this.commentService.postComment(this.commentRequestPayload).subscribe(data => {
+      this.commentService.postComment(this.commentRequestPayload).subscribe(() => {
 
         this.refresh();
 
@@ -114,8 +114,10 @@ export class PostCommentsComponent implements OnInit {
   }
 
   public refresh() {
-
     this.refreshService.setRefresh(true);
   }
 
+  onSortChange() {
+    this.getPostComments(this.selectedSortOption);
+  }
 }

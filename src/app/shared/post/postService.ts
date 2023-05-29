@@ -1,10 +1,9 @@
 import {Injectable} from "@angular/core";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {BehaviorSubject, Observable, Subject} from "rxjs";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 import {PostModel} from "./postModel";
 import {CreateEditPostRequestPayload} from "../../post/post-create-edit/createEditPostRequestPayload";
 import {AuthService} from "../../auth/service/auth.service";
-import {LocalStorageService} from "ngx-webstorage";
 import {environment} from "../../../environments/environment";
 
 @Injectable({
@@ -18,14 +17,15 @@ export class PostService {
     constructor(private http: HttpClient, public authService: AuthService) {
     }
 
-    getAllPosts(): Observable<Array<PostModel>> {
+    getAllPosts(sortBy: string): Observable<Array<PostModel>> {
 
-        return this.http.get<Array<PostModel>>(this.apiURL + '/api/posts/getAllPosts?sortBy=hot');
+        return this.http.get<Array<PostModel>>(this.apiURL + '/api/posts/getAllPosts?sortBy=' + sortBy);
     }
 
-    getPostsByCommunityName(communityName): Observable<Array<PostModel>> {
+    getPostsByCommunityName(communityName: string, sortBy: string): Observable<Array<PostModel>> {
 
-        return this.http.get<Array<PostModel>>(this.apiURL + '/api/posts/communityName=' + communityName);
+        return this.http.get<Array<PostModel>>(this.apiURL + '/api/posts/communityName=' + communityName +
+            '?sortBy=' + sortBy);
     }
 
     createPost(createEditPostRequestPayload: CreateEditPostRequestPayload): Observable<any> {

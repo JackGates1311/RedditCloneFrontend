@@ -18,10 +18,10 @@ export class CommentService {
     constructor(private http: HttpClient, public authService: AuthService) {
     }
 
-    getPostComments(postId: string): Observable<Array<CommentModel>> {
+    getPostComments(postId: string, sortBy: string): Observable<Array<CommentModel>> {
 
         return this.http.get<Array<CommentModel>>(this.apiURL + '/api/comments/getPostComments/' + postId +
-            "?sortBy=top");
+            "?sortBy=" + sortBy);
     }
 
     getCommentById(commentId: string): Observable<CommentModel> {

@@ -17,17 +17,18 @@ export class PostListComponent implements OnInit {
   posts: Array<PostModel> = [];
 
   communityName: string = this.route.snapshot.paramMap.get('name');
+  selectedSortOption: string = "hot";
 
   constructor(private route: ActivatedRoute, private postService: PostService, public authService: AuthService,
               private refreshService: RefreshService, public localStorage: LocalStorageService) {
 
     if(this.communityName == null){
 
-      this.getAllPosts();
+      this.getAllPosts("hot");
 
     } else {
 
-      this.getPostsByCommunityName();
+      this.getPostsByCommunityName("hot");
 
     }
 
@@ -41,7 +42,7 @@ export class PostListComponent implements OnInit {
 
         if(value) {
 
-          this.getAllPosts();
+          this.getAllPosts("hot");
 
         }
 
@@ -53,7 +54,7 @@ export class PostListComponent implements OnInit {
 
         if(value) {
 
-          this.getPostsByCommunityName();
+          this.getPostsByCommunityName("hot");
 
         }
 
@@ -63,19 +64,9 @@ export class PostListComponent implements OnInit {
 
   }
 
-  getAllPosts() {
+  getAllPosts(sortBy: string) {
 
-    this.postService.getAllPosts().subscribe(post => {
-
-      this.posts = post;
-
-    });
-
-  }
-
-  getPostsByCommunityName() {
-
-    this.postService.getPostsByCommunityName(this.communityName).subscribe(post => {
+    this.postService.getAllPosts(sortBy).subscribe(post => {
 
       this.posts = post;
 
@@ -83,5 +74,27 @@ export class PostListComponent implements OnInit {
 
   }
 
+  getPostsByCommunityName(sortBy: string) {
 
+    this.postService.getPostsByCommunityName(this.communityName, sortBy).subscribe(post => {
+
+      this.posts = post;
+
+    });
+
+  }
+
+
+  onSortChange() {
+
+    if(this.communityName == null){
+
+      this.getAllPosts(this.selectedSortOption);
+
+    } else {
+
+      this.getPostsByCommunityName(this.selectedSortOption);
+
+    }
+  }
 }
