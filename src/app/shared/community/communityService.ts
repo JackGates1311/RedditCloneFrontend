@@ -1,16 +1,13 @@
 import {Injectable} from "@angular/core";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {BehaviorSubject, Observable} from "rxjs";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 import {CommunityModel} from "./communityModel";
-import {
-    CreateEditCommunityRequestPayload
-} from "../../community/community-create-edit/createEditCommunityRequestPayload";
+import {CreateEditCommunityRequestPayload} from "../../community/community-create-edit/createEditCommunityRequestPayload";
 import {AuthService} from "../../auth/service/auth.service";
 import {CommunitySuspendRequestPayload} from "../../community/community-suspend/communitySuspendRequestPayload";
 import {environment} from "../../../environments/environment";
 
 @Injectable({
-
    providedIn: 'root'
 })
 

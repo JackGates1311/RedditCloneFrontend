@@ -37,7 +37,7 @@ export class PostSearchComponent implements OnInit {
   searchPosts() {
     this.postService.searchPost(this.generatePostSearchUrl()).subscribe(data => {
       this.emitPostSearchResults(data);
-    }, error => {
+    }, () => {
       alert("Error occurred while retrieving search results for posts!");
     })
   }

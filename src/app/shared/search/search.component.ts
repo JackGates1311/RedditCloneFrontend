@@ -22,7 +22,7 @@ export class SearchComponent implements OnInit {
     observableData.subscribe((results) => {
       this.searchResults = results;
 
-      if(this.selectedForm === "Communities") {
+      if(this.selectedForm === "Communities" || this.selectedForm === "Communities by PDF") {
         this.headerFields = ["id", "name", "description", "postCount", "averageKarma", "highlighterText"];
         this.headerFieldsForTable = ["ID", "Name", "Description", "Posts count", "Average karma", "Highlighter text"];
       } else {

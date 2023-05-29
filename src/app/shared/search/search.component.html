@@ -20,6 +20,9 @@
                     <app-post-search *ngIf="selectedForm === 'Posts'"
                                      (postSearchResultsEmitted)="handleSearchResultsData($event)">
                     </app-post-search>
+                    <app-search-pdf *ngIf="selectedForm === 'Posts by PDF' ||
+                        selectedForm === 'Communities by PDF'" [mode] = "selectedForm"
+                                    (pdfSearchResultsEmitted)="handleSearchResultsData($event)"></app-search-pdf>
                 </div>
             </div>
             <div class="col-lg-9">

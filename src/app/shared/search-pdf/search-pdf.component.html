@@ -1,0 +1,22 @@
+<div class="mt-4">
+    <form [formGroup]="pdfSearchForm" (ngSubmit)="searchByPdf()">
+        <div class="form-group">
+            <label for="isPdfIndex">Index for search:</label>
+            <select class="form-control" id="isPdfIndex" [formControlName]="'isPdfIndex'">
+                <option value="true">PDF index</option>
+                <option value="false">Default index</option>
+            </select>
+        </div>
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="pdfPath"
+                   (change)="onFileSelected($event)" [formControlName]="'pdfPath'"
+                   name="pdfPath" accept="application/pdf">
+            <label class="custom-file-label" id="pdfLabel" for="pdfPath">
+                {{pdfPathPlaceholder}}</label>
+        </div>
+        <input type="submit" class="btn btn-primary w-100 mt-4" [disabled]="pdfSearchForm.invalid"
+               [value]="'Search'">
+        <input type="reset" class="btn btn-primary w-100 mt-2" [value]="'Clear'"
+               (click)="onClear()">
+    </form>
+</div>
