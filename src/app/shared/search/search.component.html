@@ -9,12 +9,17 @@
                     <div class="dropdown-menu w-100" aria-labelledby="formTypeDropdown">
                         <a class="dropdown-item pointerCursor" (click)="selectedForm = 'Communities'">Communities</a>
                         <a class="dropdown-item pointerCursor" (click)="selectedForm = 'Posts'">Posts</a>
+                        <a class="dropdown-item pointerCursor" (click)="selectedForm = 'Communities by PDF'">
+                            Communities by PDF</a>
+                        <a class="dropdown-item pointerCursor" (click)="selectedForm = 'Posts by PDF'">Posts by PDF</a>
                     </div>
 
                     <app-community-search *ngIf="selectedForm === 'Communities'"
-                                          (communitySearchResultsEmitted)="handleCommunitySearchResultsData($event)">
+                                          (communitySearchResultsEmitted)="handleSearchResultsData($event)">
                     </app-community-search>
-                    <app-post-search *ngIf="selectedForm === 'Posts'"></app-post-search>
+                    <app-post-search *ngIf="selectedForm === 'Posts'"
+                                     (postSearchResultsEmitted)="handleSearchResultsData($event)">
+                    </app-post-search>
                 </div>
             </div>
             <div class="col-lg-9">

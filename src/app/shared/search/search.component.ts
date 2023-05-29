@@ -18,16 +18,16 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  handleCommunitySearchResultsData(observableData: Observable<any>) {
+  handleSearchResultsData(observableData: Observable<any>) {
     observableData.subscribe((results) => {
-      console.log('Data received from component:', results);
       this.searchResults = results;
 
       if(this.selectedForm === "Communities") {
         this.headerFields = ["id", "name", "description", "postCount", "averageKarma", "highlighterText"];
-        this.headerFieldsForTable = ["ID", "Name", "Description", "Post count", "Average Karma", "Highlighter Text"];
+        this.headerFieldsForTable = ["ID", "Name", "Description", "Posts count", "Average karma", "Highlighter text"];
       } else {
-        // for posts
+        this.headerFields = ["id", "title", "text", "commentCount", "karma", "flairs", "highlighterText"];
+        this.headerFieldsForTable = ["ID", "Title", "Text", "Comments count", "Karma", "Flairs", "Highlighter text"];
       }
     });
   }

@@ -35,6 +35,7 @@ import { ReportComponent } from './shared/report/report.component';
 import { CommunitySearchComponent } from './shared/community-search/community-search.component';
 import { PostSearchComponent } from './shared/post-search/post-search.component';
 import { SearchComponent } from './shared/search/search.component';
+import { SearchPdfComponent } from './shared/search-pdf/search-pdf.component';
 
 
 @NgModule({
@@ -67,6 +68,7 @@ import { SearchComponent } from './shared/search/search.component';
       CommunitySearchComponent,
       PostSearchComponent,
       SearchComponent,
+      SearchPdfComponent,
 	],
 	imports: [
 		BrowserModule,

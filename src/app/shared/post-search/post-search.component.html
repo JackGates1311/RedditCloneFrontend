@@ -1,3 +1,85 @@
 <div class="mt-4">
-    <p>post-search works!</p>
+    <form [formGroup]="postSearchForm" (ngSubmit)="searchPosts()">
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="title">Title:</label>
+                <input type="text" class="form-control" id="title" [formControlName]="'title'">
+                <select class="form-control mt-2" [formControlName]="'titleSearchMode'">
+                    <option value="standard">Standard search</option>
+                    <option value="fuzzy">Fuzzy search</option>
+                    <option value="phrase">Phrase search</option>
+                </select>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="flairs">Flairs:</label>
+                <input type="text" class="form-control" id="flairs" [formControlName]="'flairs'">
+                <select class="form-control mt-2" [formControlName]="'flairsSearchMode'">
+                    <option value="standard">Standard search</option>
+                    <option value="fuzzy">Fuzzy search</option>
+                    <option value="phrase">Phrase search</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="text">Text:</label>
+            <input type="text" class="form-control" id="text" [formControlName]="'text'">
+            <select class="form-control mt-2" [formControlName]="'textSearchMode'">
+                <option value="standard">Standard search</option>
+                <option value="fuzzy">Fuzzy search</option>
+                <option value="phrase">Phrase search</option>
+            </select>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="minCommentCount">Min comments:</label>
+                <input type="number" class="form-control" id="minCommentCount" [formControlName]="'minCommentCount'"
+                       min="0">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="maxCommentCount">Max comments:</label>
+                <input type="number" class="form-control" id="maxCommentCount" [formControlName]="'maxCommentCount'"
+                       min="0">
+            </div>
+        </div>
+
+        <div *ngIf="postSearchForm.get('maxCommentCount').errors?.minMax ||
+             postSearchForm.get('minCommentCount').value < 0 ||
+             postSearchForm.get('maxCommentCount').value < 0" id="minMaxCommentCountFeedback"
+             class="text-danger mb-1 text-center">
+            Range between min and max comments are invalid!
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="minKarma">Min karma:</label>
+                <input type="number" class="form-control" id="minKarma" [formControlName]="'minKarma'">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="maxKarma">Max karma:</label>
+                <input type="number" class="form-control" id="maxKarma" [formControlName]="'maxKarma'">
+            </div>
+        </div>
+
+        <div *ngIf="postSearchForm.get('maxKarma').errors?.minMaxKarma" id="minMaxKarmaFeedback"
+             class="text-danger mb-1 text-center">
+            Range between min and max karma are invalid!
+        </div>
+
+        <div class="form-group">
+            <label for="isMust">Logic operator:</label>
+            <select class="form-control" id="isMust" [formControlName]="'isMust'">
+                <option value="and">AND</option>
+                <option value="or">OR</option>
+            </select>
+        </div>
+
+        <input type="submit" class="btn btn-primary w-100" [disabled]="postSearchForm.invalid" [value]="'Search'">
+        <input type="reset" class="btn btn-primary w-100 mt-2" [value]="'Clear'"
+               (click)="emitPostSearchResults(null)">
+    </form>
 </div>

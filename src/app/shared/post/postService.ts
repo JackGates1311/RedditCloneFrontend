@@ -52,4 +52,8 @@ export class PostService {
 
     }
 
+    searchPost(url: string): Observable<any> {
+        return this.http.get(url);
+    }
+
 }

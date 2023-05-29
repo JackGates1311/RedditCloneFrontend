@@ -32,7 +32,9 @@
             </div>
         </div>
 
-        <div *ngIf="communitySearchForm.get('maxPosts').errors?.minMaxPosts" id="minMaxPostsFeedback"
+        <div *ngIf="communitySearchForm.get('maxPosts').errors?.minMax ||
+             communitySearchForm.get('minPosts').value < 0 ||
+             communitySearchForm.get('maxPosts').value < 0" id="minMaxPostsFeedback"
              class="text-danger mb-1 text-center">
             Range between min and max posts are invalid!
         </div>
